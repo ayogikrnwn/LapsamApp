@@ -1,0 +1,1 @@
+export const APIUrlSampah = "localhost:8001";
