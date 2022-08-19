@@ -14,7 +14,7 @@ import ButtonPrimary from "../components/Button/ButtonPrimary";
 import HeaderComponent from "../components/HeaderComponent/HeaderComponent";
 import axios from "axios";
 import APIUrl from "../config/APIUrl";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import {
   asyncDataUser,
   asyncGetData,
@@ -28,6 +28,7 @@ const LoginPetugas = ({ navigation }) => {
   const [loginInput, setLoginInput] = useState({});
 
   const dispatch = useDispatch();
+  const selector = useSelector((state) => state.user.user);
 
   const handleLogin = async () => {
     if (loginInput.username && loginInput.password) {
@@ -35,16 +36,27 @@ const LoginPetugas = ({ navigation }) => {
       formDataLogin.append("username", loginInput.username);
       formDataLogin.append("password", loginInput.password);
 
-      asyncGetData("role-petugas").then(async (res) => {
-        if (
-          loginInput.username === res.username &&
-          loginInput.password === res.password
-        ) {
-          dispatch(setDataUser(res));
-          await asyncStoreData(asyncDataUser, res);
-          navigation.navigate("MyTabsPetugas");
-        }
-      });
+      let findUser = selector.find(
+        (data) =>
+          data.username === loginInput.username &&
+          loginInput.password === data.password
+      );
+      if (findUser) {
+        dispatch(setDataUser(findUser));
+        await asyncStoreData(asyncDataUser, findUser);
+        // navigation.navigate("MyTabsPetugas");
+
+        navigation.navigate("Home");
+      }
+
+      // asyncGetData("role-petugas").then(async (res) => {
+      //   if (
+      //     loginInput.username === res.username &&
+      //     loginInput.password === res.password
+      //   ) {
+
+      //   }
+      // });
 
       // fetchLogin({
       //   body: formDataLogin,

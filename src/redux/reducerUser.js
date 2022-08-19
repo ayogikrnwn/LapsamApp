@@ -25,7 +25,6 @@ export const user = createSlice({
   },
   reducers: {
     userRegister: (state, action) => {
-      asyncStoreData("register", action.payload);
       state.user = action.payload;
     },
   },

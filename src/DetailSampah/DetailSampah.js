@@ -17,15 +17,18 @@ import ICNotAngkut from "../assets/fail.png";
 import ICNotAngkutDisabled from "../assets/failGrey.png";
 import CardRiwayatSampah from "../components/CardDetailSampah/CardRiwayatSampah";
 import { useSelector, useDispatch } from "react-redux";
-import { getListSampah } from "../utils";
+import { asyncGetData, getListSampah } from "../utils";
 import { setListSampah } from "../redux/reducers";
+import { useFocusEffect } from "@react-navigation/native";
 
 const DetailSampah = ({ navigation }) => {
   const [namaHeader, setNamaHeader] = useState("Kiri");
   const dispatch = useDispatch();
   const selector = useSelector((state) => state.data);
   const { listSampah, listDummySampah, dataUser } = selector;
-  React.useEffect(() => {
+  // const [listDummySampah, setListDummySampah] = useState([]);
+
+  React.useEffect(async () => {
     getListSampah()
       .then((res) => {
         dispatch(setListSampah(res.data.data));
@@ -34,6 +37,59 @@ const DetailSampah = ({ navigation }) => {
       })
       .catch((err) => {});
   }, []);
+
+  const getSampahDummy = async () => {
+    // let data =
+    //   selector.listDummySampah.length > 0
+    //     ? selector.listDummySampah
+    //     : await asyncGetData("listDummySampah");
+    // console.log("data", data);
+    // setListDummySampah(data);
+  };
+
+  useFocusEffect(
+    React.useCallback(() => {
+      console.log("masuk sini");
+      // const unsubscribe = API.subscribe(userId, (focus) => setFocus(data));
+      // console.log("count", count);
+
+      getSampahDummy();
+
+      // uri, type, name
+
+      // return () => unsubscribe();
+    }, [listDummySampah])
+  );
+
+  const detail = () => {
+    if (listDummySampah.length > 0) {
+      let filter = listDummySampah.filter(
+        (data) => data.id_masy === dataUser.id_masy && data.status !== 2
+      );
+      if (filter.length > 0) {
+        return filter;
+      } else {
+        return false;
+      }
+    } else {
+      return false;
+    }
+  };
+
+  const riwayat = () => {
+    if (listDummySampah.length > 0) {
+      let filter = listDummySampah.filter(
+        (data) => data.id_masy === dataUser.id_masy && data.status === 2
+      );
+      if (filter.length > 0) {
+        return filter;
+      } else {
+        return false;
+      }
+    } else {
+      return false;
+    }
+  };
 
   return (
     <View style={{ flex: 1, backgroundColor: "white" }}>
@@ -101,22 +157,29 @@ const DetailSampah = ({ navigation }) => {
 
             //  style={{ alignItems: "center" }}
             >
-              {listDummySampah.length > 0 &&
-                listDummySampah
-                  .filter((data) => data.id_masy === dataUser.id_masy)
-                  .map((data) => {
-                    return (
-                      <CardDetailSampah
-                        tanggal={data.tanggal}
-                        imgLeft={ICDiangkut}
-                        imgCenter={ICSwapGray}
-                        imgRight={ICNotAngkutDisabled}
-                        status={"Telah Diangkut"}
-                        title={data.nama_pelapor}
-                        alamat={data.alamat_lengkap}
-                      />
-                    );
-                  })}
+              {detail() &&
+                detail().map((data) => {
+                  return (
+                    <CardDetailSampah
+                      namaPetugas={data.petugas || false}
+                      tanggal={data.tanggal}
+                      imgLeft={
+                        data.status === 2 ? ICDiangkut : ICDiangkutDisabled
+                      }
+                      imgCenter={
+                        data.status === 1 ? ICSwap : ICSwapGray
+
+                        // ICSwapGray
+                      }
+                      imgRight={
+                        data.status === 0 ? ICNotAngkut : ICNotAngkutDisabled
+                      }
+                      status={data.status}
+                      title={data.nama_pelapor}
+                      alamat={`${data.alamat_lengkap}`}
+                    />
+                  );
+                })}
               {/* {listSampah.length > 0 ? (
                 listSampah.map((data) => {
                   return (
@@ -196,17 +259,42 @@ const DetailSampah = ({ navigation }) => {
           </View>
           <View
             style={{
+              flex: 1,
               backgroundColor: "#5FD068",
-              height: "100%",
-              width: "100%",
-              marginTop: 10,
-              borderTopLeftRadius: 26,
-              borderTopRightRadius: 26,
+              borderRadius: 26,
               paddingHorizontal: 10,
-              paddingVertical: 20,
+              paddingTop: 10,
+              justifyContent: "center",
+              alignContent: "center",
+              alignSelf: "center",
+              width: "100%",
             }}
           >
-            <View style={{ alignItems: "center" }}>
+            <ScrollView>
+              {riwayat() &&
+                riwayat().map((data) => {
+                  return (
+                    <CardRiwayatSampah
+                      imgLeft={
+                        data.status === 2 ? ICDiangkut : ICDiangkutDisabled
+                      }
+                      imgCenter={
+                        data.status === 1 ? ICSwap : ICSwapGray
+
+                        // ICSwapGray
+                      }
+                      imgRight={
+                        data.status === 0 ? ICNotAngkut : ICNotAngkutDisabled
+                      }
+                      status={data.status}
+                      title={data.nama_pelapor}
+                      alamat={`${data.alamat_lengkap} `}
+                      namaPetugas={data.petugas || false}
+                      tanggal={data.tanggal}
+                    />
+                  );
+                })}
+
               {/* <CardRiwayatSampah
                 imgLeft={ICDiangkut}
                 imgCenter={ICSwapGray}
@@ -225,7 +313,7 @@ const DetailSampah = ({ navigation }) => {
                 imgRight={ICNotAngkut}
                 status="Belum Diangkut"
               /> */}
-            </View>
+            </ScrollView>
           </View>
         </>
       ) : null}

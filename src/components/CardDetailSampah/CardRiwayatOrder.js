@@ -2,12 +2,20 @@ import { Image, StyleSheet, Text, View } from "react-native";
 import React from "react";
 import ICDone from "../../assets/done.png";
 
-const CardRiwayatOrder = ({ imgLeft, imgCenter, imgRight, status }) => {
+const CardRiwayatOrder = ({
+  imgLeft,
+  imgCenter,
+  imgRight,
+  status,
+  alamat,
+  title,
+  tanggal,
+}) => {
   return (
     <View
       style={{
         backgroundColor: "white",
-        width: "90  %",
+        width: "100%",
         height: 130,
         borderRadius: 14,
         paddingHorizontal: 14,
@@ -16,7 +24,7 @@ const CardRiwayatOrder = ({ imgLeft, imgCenter, imgRight, status }) => {
       }}
     >
       <Text style={{ fontWeight: "200", color: "black" }}>
-        08:17, 14 Juni 2022
+        {tanggal || "08:17, 14 Juni 2022"}
       </Text>
       <Text style={{ fontWeight: "200", color: "black", color: "#5FD068" }}>
         Sampah Telah Diangkut
@@ -31,7 +39,7 @@ const CardRiwayatOrder = ({ imgLeft, imgCenter, imgRight, status }) => {
               marginTop: 8,
             }}
           >
-            1 Kantong Plastik Kecil
+            {title || "1 Kantong Plastik Kecil"}
           </Text>
           <Text
             style={{
@@ -40,8 +48,10 @@ const CardRiwayatOrder = ({ imgLeft, imgCenter, imgRight, status }) => {
               fontSize: 14,
               marginTop: 8,
             }}
+            numberOfLines={2}
+            ellipsizeMode="tail"
           >
-            Jl. Lorem Ipsum dolor si amet
+            {alamat || "Jl. Lorem Ipsum dolor si amet"}
           </Text>
         </View>
         <View>

@@ -45,9 +45,7 @@ const CameraPage = ({ route, navigation }) => {
 
   const photo = async () => {
     setLoadTakePicture(true);
-    const take = await refCamera.current.takePhoto({
-      flash: "on",
-    });
+    const take = await refCamera.current.takePhoto({});
     setLoadTakePicture(false);
 
     setImages(take);
@@ -107,7 +105,7 @@ const CameraPage = ({ route, navigation }) => {
                   marginBottom: 20,
                 }}
               >
-                <Text>{loadTakePicture ? "load.." : "take"}</Text>
+                {/* <Text>{loadTakePicture ? "load.." : "take"}</Text> */}
                 {/* <Icon name={"chevron-right"} size={30} color="#01a699" /> */}
               </TouchableOpacity>
             </>

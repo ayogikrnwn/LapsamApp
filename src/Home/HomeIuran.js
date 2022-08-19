@@ -12,6 +12,7 @@ import ICLengkap from "../assets/right.png";
 import HeaderHomeIuran from "../components/HeaderComponent/HeaderHomeIuran";
 import CardPembayaran from "../components/CardPembayaran";
 import InputTextSearch from "../Input/InputTextSearch";
+import { formatDate } from "../utils";
 
 const HomeIuran = ({ navigation }) => {
   return (
@@ -20,7 +21,7 @@ const HomeIuran = ({ navigation }) => {
 
       <View style={styles.wrapper}>
         <ScrollView>
-          <Text style={styles.txtTgl}>11 Juli 2022</Text>
+          <Text style={styles.txtTgl}>{formatDate(new Date())}</Text>
 
           <View style={{ paddingHorizontal: 20, marginTop: 40 }}>
             <Text

@@ -19,6 +19,7 @@ import ILNews from "../assets/ilnews.png";
 import axios from "axios";
 import APIUrlSampah from "../config/APIUrlSampah";
 import { useSelector } from "react-redux";
+import { formatDate } from "../utils";
 
 const Home = ({ navigation }) => {
   const [listSampah, setListSampah] = useState([]);
@@ -42,13 +43,16 @@ const Home = ({ navigation }) => {
     //     alert('Login Gagal')
     // }
   };
+
+  console.log("listDummySampah", listDummySampah);
+
   return (
     <View style={{ flex: 1 }}>
       <HeaderHome />
 
       <View style={styles.wrapper}>
         <ScrollView>
-          <Text style={styles.txtTgl}>11 Juli 2022</Text>
+          <Text style={styles.txtTgl}>{formatDate(new Date())}</Text>
 
           <View style={{ paddingHorizontal: 20, marginTop: 40 }}>
             <View
@@ -58,7 +62,7 @@ const Home = ({ navigation }) => {
               <Text style={styles.txtLight}>Status</Text>
             </View>
 
-            {listDummySampah.length > 0 ? (
+            {Array.isArray(listDummySampah) && listDummySampah.length > 0 ? (
               listDummySampah
                 .filter((data) => data.id_masy === dataUser.id_masy)
                 .slice(0, 3)

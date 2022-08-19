@@ -1,0 +1,26 @@
+ini utk perintah menjalankan servernya
+
+1. service_user : php -S 192.168.25.140:8000 -t public (managemen user : masyarakat, pengelola, petugas sampah, petugas iuran) 
+2. service2: php -S 192.168.25.140:8001 -t public (managemen sampah : sampah dan detail sampah) 
+3. service3 : php -S 192.168.25.140:8002 -t public ( jadwal sampah, tpa, tps ) 
+4. service4 : php -S 192.168.25.140:8003 -t public (kendaraan)
+
+
+progress
+- upload image petugas - done
+- ganti status data sampah - done
+- login & register masyarakat - done
+- menampilkan semua data sampah - done
+- login petugas - done
+- get list jadwal - done
+- replace text dummy di profile page dengan yang sesuai dari database - progress
+- inpurt/create data sampah - done
+- register - done
+- data alamat - done
+- mundur 1 langkah di penambahan alamat - done
+- list alamat tidak sesuai dengan list yang tersedia - done
+- tanggal di beranda masyarakat - done
+- validasi form tambah sampah - done
+- menyesuaikan status data di beranda - done
+- tanggal di beranda petugas sampah - done
+- validasi form angkut sampah - done

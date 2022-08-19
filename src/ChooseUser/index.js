@@ -11,8 +11,9 @@ import {
   listDummySampah,
 } from "../utils";
 import { useDispatch, useSelector } from "react-redux";
-import { setDataUser, setDummySampah } from "../redux/reducers";
+import { setDataUser, setDummySampah, setListAlamat } from "../redux/reducers";
 import { userRegister } from "../redux/reducerUser";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const ChooseUser = ({ navigation }) => {
   const [openUser, setOpenUser] = useState(false);
@@ -40,8 +41,15 @@ const ChooseUser = ({ navigation }) => {
   };
 
   React.useEffect(() => {
-    asyncGetData("register").then((res) => {
-      dispatch(userRegister(res));
+    asyncGetData("userRegister").then((res) => {
+      if (typeof res === "object" && res !== null) {
+        dispatch(userRegister(res));
+      }
+    });
+    asyncGetData("listAlamat").then((res) => {
+      if (typeof res === "object" && res !== null) {
+        dispatch(setListAlamat(res));
+      }
     });
 
     asyncGetData(asyncDataUser).then((res) => {
@@ -51,8 +59,11 @@ const ChooseUser = ({ navigation }) => {
       if (res) {
         if (res.nama_masy) {
           dispatch(setDataUser(res));
+
           navigation.navigate("MyTabs");
         } else if (res.nama_petugas) {
+          dispatch(setDataUser(res));
+
           navigation.navigate("MyTabsPetugas");
         }
       }

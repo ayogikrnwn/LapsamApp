@@ -48,7 +48,6 @@ const NewCameraPage = ({ setIsCameraOpen }) => {
     setLoadTakePicture(true);
     const take = await refCamera.current.takePhoto({
       qualityPrioritization: "quality",
-      flash: "on",
       enableAutoRedEyeReduction: true,
     });
     // await refCamera.current
@@ -121,7 +120,7 @@ const NewCameraPage = ({ setIsCameraOpen }) => {
                   marginBottom: 20,
                 }}
               >
-                <Text>{loadTakePicture ? "load.." : "take"}</Text>
+                {/* <Text>{loadTakePicture ? "load.." : "take"}</Text> */}
                 {/* <Icon name={"chevron-right"} size={30} color="#01a699" /> */}
               </TouchableOpacity>
             </>

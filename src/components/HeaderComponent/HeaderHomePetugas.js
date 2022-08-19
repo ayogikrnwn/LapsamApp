@@ -7,6 +7,7 @@ import { useSelector } from "react-redux";
 const HeaderHomePetugas = ({ title }) => {
   const selector = useSelector((state) => state.data);
   const { dataUser } = selector;
+
   return (
     <View
       style={{

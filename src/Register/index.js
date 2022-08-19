@@ -1,4 +1,5 @@
 import {
+  Alert,
   Image,
   ScrollView,
   StyleSheet,
@@ -19,6 +20,7 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   asyncDataUser,
   asyncStoreData,
+  clearStorage,
   fetchLogin,
   registerMasyarakat,
 } from "../utils";
@@ -59,45 +61,57 @@ const Register = ({ navigation }) => {
   const handleRegister = async () => {
     // navigation.navigate("Home");
 
-    let formDataRegister = new FormData();
-    formDataRegister.append("nama_masy", registerInput.nama);
-    formDataRegister.append("nik_masy", registerInput.nik);
-    formDataRegister.append("no_hp_masy", registerInput.noponsel);
-    formDataRegister.append("alamat", registerInput.alamat);
-    formDataRegister.append("username", registerInput.username);
-    formDataRegister.append("password", registerInput.password);
+    // let formDataRegister = new FormData();
+    // formDataRegister.append("nama_masy", registerInput.nama);
+    // formDataRegister.append("nik_masy", registerInput.nik);
+    // formDataRegister.append("no_hp_masy", registerInput.noponsel);
+    // formDataRegister.append("alamat", registerInput.alamat);
+    // formDataRegister.append("username", registerInput.username);
+    // formDataRegister.append("password", registerInput.password);
 
-    let formDataLogin = new FormData();
-    formDataLogin.append("username", registerInput.username);
-    formDataLogin.append("password", registerInput.password);
-
+    // let formDataLogin = new FormData();
+    // formDataLogin.append("username", registerInput.username);
+    // formDataLogin.append("password", registerInput.password);
+    const { nama, nik, noponsel, alamat, username, password } = registerInput;
     const body = {
+      // nama_masy: "rohan",
       nama_masy: registerInput.nama,
+      // nik_masy: "12323434545",
       nik_masy: registerInput.nik,
+      // no_hp_masy: "123234345456",
       no_hp_masy: registerInput.noponsel,
+      // alamat: "jl. jalannn",
       alamat: registerInput.alamat,
       point: 0,
+      // username: "rohan",
       username: registerInput.username,
+      // password: "password",
       password: registerInput.password,
       id_masy: Math.random() * 1974235,
       updated_at: new Date().toString(),
       created_at: new Date().toString(),
     };
 
-    // await asyncStoreData(asyncDataUser, dummyDataSuccessRegisterLogin);
+    // console.log("[...user, body]", [...user, body]);
+
+    if (nama && nik && noponsel && alamat && username && password) {
+      await asyncStoreData(asyncDataUser, body);
+      await asyncStoreData("userRegister", [...user, body]);
+
+      dispatch(userRegister(body));
+
+      dispatch(setDataUser(body));
+
+      navigation.navigate("Home");
+    } else {
+      Alert.alert("Mohon isi semua bagian");
+    }
 
     // navigation.navigate("MyTabs", {
     //   resData: dummyDataSuccessRegisterLogin,
     // });
 
     // console.log("body", body);
-    dispatch(userRegister([...user, body]));
-
-    dispatch(setDataUser(body));
-
-    navigation.navigate("MyTabs", {
-      resData: res,
-    });
 
     // registerMasyarakat({ body: formDataRegister })
     //   .then((res) => {

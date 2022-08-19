@@ -1,4 +1,5 @@
 import {
+  Alert,
   Image,
   ScrollView,
   StyleSheet,
@@ -20,7 +21,7 @@ import { useSelector } from "react-redux";
 
 import { useFocusEffect } from "@react-navigation/native";
 import NewCameraPage from "./NewCameraPage";
-import { inputSampah } from "../utils";
+import { addPoint, inputSampah } from "../utils";
 import { useDispatch } from "react-redux";
 import axios from "axios";
 import { setDummySampah } from "../redux/reducers";
@@ -37,12 +38,11 @@ const uploadSampahMs = ({ route, navigation }) => {
   const [isCameraOpen, setIsCameraOpen] = useState(false);
 
   const dispatch = useDispatch();
+  const selector = useSelector((state) => state.data);
 
   // console.log("usrselected", valueUser);
   const [user, setUser] = useState([
-    { label: "Alamat Rumah", value: "rumah" },
-    { label: "Alamat Kost", value: "kost" },
-    { label: "Alamat Kantor", value: "kantor" },
+    { label: "Tambah Alamat", value: "tambah alamat" },
   ]);
 
   const [image, setImage] = React.useState(false);
@@ -51,58 +51,90 @@ const uploadSampahMs = ({ route, navigation }) => {
 
   const { listDummySampah } = count;
 
-  React.useEffect(() => {}, []);
+  React.useEffect(() => {
+    if (selector.listAlamat.length > 0) {
+      // console.log("selector.listAlamat", selector.listAlamat);
+      const filter = selector.listAlamat.filter(
+        (data) => data.id_masy === selector.dataUser.id_masy
+      );
+      if (filter.length > 0) {
+        let loop = filter.map((data) => {
+          return {
+            label: data.tandai_sebagai,
+            value: `${data.nama_jalan || "Jl. Lorem Ipsum"}
+    ${data.kelurahan || "Kelurahan"} ${data.kecamatan || "kecamatan"}
+    ${data.kota || "Kabupaten"} kode pos ${data.kode_pos || 45231}`,
+          };
+        });
+        setUser(loop);
+      } else {
+        setUser(user);
+      }
+    }
+  }, []);
 
-  useFocusEffect(
-    React.useCallback(() => {
-      // const unsubscribe = API.subscribe(userId, (focus) => setFocus(data));
-      console.log("count", count);
-
-      // uri, type, name
-
-      // return () => unsubscribe();
-    }, [route])
-  );
-
-  const handleLaporkanSampah = async () => {
-    const { nama_masy, id_masy } = count.dataUser;
+  const handleLaporkanSampah = () => {
+    const { nama_masy, id_masy, no_hp_masy } = count.dataUser;
     const total = size.kecil + size.besar + size.sedang;
     const { kecil, sedang, besar } = size;
     const images = `file://${image.path}`;
     const newAlamat = valueUser || "jl. jlan-jlan";
     const penempatan = `Test From Apk`;
+    let named = Math.random() * 19352;
 
     const body = {
       jumlah_sampah: total,
       nama_pelapor: nama_masy,
       alamat_lengkap: newAlamat,
-      foto: images,
+      foto: `${named}.jpg`,
       tanggal: new Date().toString(),
       penempatan,
       id_masy,
       jml_kecil: kecil,
       jml_sedang: sedang,
       jml_besar: besar,
+      id_sampah: Math.random() * 2343,
+      status: 0,
+      no_hp_masy: no_hp_masy,
     };
 
-    await dispatch(
-      setDummySampah([
-        ...listDummySampah,
-        {
-          jumlah_sampah: total,
-          nama_pelapor: nama_masy,
-          alamat_lengkap: newAlamat,
-          foto: image,
-          tanggal: new Date().toString(),
-          penempatan,
-          id_masy,
-          jml_kecil: kecil,
-          jml_sedang: sedang,
-          jml_besar: besar,
+    if (image && kecil && sedang && besar && valueUser) {
+      const formData = new FormData();
+
+      console.log(image.path);
+
+      formData.append("mypic", {
+        uri: `file://${image.path}`,
+        name: "blablabla.jpg",
+        type: "image/jpg",
+      });
+
+      axios({
+        data: formData,
+        baseURL: `http://192.168.158.140:1324/upload-image/${named}`,
+        method: "POST",
+        headers: {
+          "Content-Type": "multipart/form-data",
+          Accept: "application/json",
         },
-      ])
-    );
-    navigation.goBack();
+      })
+        .then((res) => {
+          addPoint({
+            dataUser: count.dataUser,
+            dispatch: dispatch,
+          }).then(async (res) => {
+            await dispatch(setDummySampah([...listDummySampah, body]));
+            navigation.goBack();
+          });
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    } else {
+      Alert.alert("Mohon isi semua bagian");
+    }
+
+    // console.log("image", image);
 
     // const formDataInputSampah = new FormData();
     // formDataInputSampah.append("jumlah_sampah", total);
@@ -217,7 +249,13 @@ const uploadSampahMs = ({ route, navigation }) => {
                     value={valueUser}
                     items={user}
                     setOpen={setOpenUser}
-                    setValue={setValueUser}
+                    setValue={(e) => {
+                      if (e() === "tambah alamat") {
+                        navigation.navigate("AlamatUser");
+                      } else {
+                        setValueUser(e);
+                      }
+                    }}
                     setItems={setUser}
                   />
                 </View>

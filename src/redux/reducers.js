@@ -9,6 +9,7 @@ export const counterSlice = createSlice({
     dataUser: false,
     listSampah: false,
     listDummySampah: [],
+    listAlamat: [],
   },
   reducers: {
     increment: (state) => {
@@ -31,14 +32,22 @@ export const counterSlice = createSlice({
       state.dataUser = action.payload;
     },
     setDummySampah: (state, action) => {
-      state.listDummySampah = action.payload;
+      if (action.payload !== null && typeof action.payload === "object") {
+        state.listDummySampah = action.payload;
 
-      asyncStoreData("listDummySampah", action.payload);
+        asyncStoreData("listDummySampah", action.payload);
+      }
     },
     setListSampah: (state, action) => {
-      state.listSampah = action.payload.filter(
-        (data) => data.id_masy === state.dataUser.id_masy
-      );
+      state.listSampah = action.payload;
+      // state.listSampah = action.payload.filter(
+      //   (data) => data.id_masy === state.dataUser.id_masy
+      // );
+    },
+    setListAlamat: (state, action) => {
+      if (action.payload !== null && typeof action.payload === "object") {
+        state.listAlamat = action.payload;
+      }
     },
   },
 });
@@ -52,6 +61,7 @@ export const {
   setDataUser,
   setListSampah,
   setDummySampah,
+  setListAlamat,
 } = counterSlice.actions;
 
 export default counterSlice.reducer;

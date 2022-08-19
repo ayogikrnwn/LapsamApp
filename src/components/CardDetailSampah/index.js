@@ -10,7 +10,25 @@ const CardDetailSampah = ({
   tanggal,
   title,
   alamat,
+  namaPetugas,
 }) => {
+  let newStatus = {
+    text: false,
+    color: false,
+  };
+
+  if (status >= 0) {
+    if (status === 0) {
+      newStatus.text = "Belum Diangkut";
+      newStatus.color = "red";
+    } else if (status === 1) {
+      newStatus.text = "Sedang Diangkut";
+      newStatus.color = "#EAE509";
+    } else if (status === 2) {
+      newStatus.text = "Telah Diangkut";
+      newStatus.color = "#5FD068";
+    }
+  }
   return (
     <View
       style={{
@@ -48,29 +66,31 @@ const CardDetailSampah = ({
           >
             {alamat || "Jl. Lorem Ipsum dolor si amet"}
           </Text>
-          <Text
-            style={{
-              fontWeight: "200",
-              color: "black",
-              fontSize: 14,
-              marginTop: 8,
-            }}
-          >
-            Nama Petugas : John
-          </Text>
+          {namaPetugas && (
+            <Text
+              style={{
+                fontWeight: "200",
+                color: "black",
+                fontSize: 14,
+                marginTop: 8,
+              }}
+            >
+              Nama Petugas : {namaPetugas}
+            </Text>
+          )}
         </View>
         <View>
           <Text
             style={{
               fontWeight: "200",
-              color: "black",
+              // color: newStatus.color,
               fontSize: 12,
               marginTop: 8,
-              color: "#5FD068",
+              color: newStatus.color,
               textAlign: "center",
             }}
           >
-            {status}
+            {status ? newStatus.text : "belum diangkut"}
           </Text>
           <View style={{ flexDirection: "row", marginTop: 9 }}>
             <Image source={imgLeft} style={{ width: 34, height: 34 }} />

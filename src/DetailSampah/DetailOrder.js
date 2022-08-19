@@ -22,8 +22,33 @@ const DetailOrder = ({ navigation }) => {
   const [namaHeader, setNamaHeader] = useState("Kiri");
 
   const selector = useSelector((state) => state.data);
+  const { listDummySampah } = selector;
 
-  console.log("selector", selector.listDummySampah);
+  const detail = () => {
+    if (listDummySampah.length > 0) {
+      let filter = listDummySampah.filter((data) => data.status !== 2);
+      if (filter.length > 0) {
+        return filter;
+      } else {
+        return false;
+      }
+    } else {
+      return false;
+    }
+  };
+
+  const riwayat = () => {
+    if (listDummySampah.length > 0) {
+      let filter = listDummySampah.filter((data) => data.status === 2);
+      if (filter.length > 0) {
+        return filter;
+      } else {
+        return false;
+      }
+    } else {
+      return false;
+    }
+  };
 
   return (
     <View style={{ flex: 1, backgroundColor: "white" }}>
@@ -69,33 +94,61 @@ const DetailOrder = ({ navigation }) => {
             </View>
             {/* //header */}
           </View>
-          <ScrollView>
+          <View
+            style={{
+              flex: 1,
+              backgroundColor: "#5FD068",
+              // height: "100%",
+              // width: "100%",
+              marginTop: 10,
+              borderTopLeftRadius: 26,
+              borderTopRightRadius: 26,
+              paddingHorizontal: 10,
+              paddingVertical: 20,
+            }}
+          >
             <View
               style={{
-                backgroundColor: "#5FD068",
-                height: "100%",
-                width: "100%",
-                marginTop: 10,
-                borderTopLeftRadius: 26,
-                borderTopRightRadius: 26,
-                paddingHorizontal: 10,
-                paddingVertical: 20,
+                //  alignItems: "center",
+                flex: 1,
               }}
             >
-              <View style={{ alignItems: "center" }}>
-                {selector.listDummySampah.length > 0 ? (
-                  selector.listDummySampah.map((data) => {
+              <ScrollView>
+                {detail() ? (
+                  detail().map((data) => {
+                    // console.log(data);
                     return (
                       <>
                         <CardDetailOrder
-                          imageSampah={`file://${data.foto.path}`}
+                          data={data}
+                          alamat={data.alamat_lengkap}
+                          imageSampah={
+                            typeof data.foto === "string"
+                              ? `http://192.168.158.140:1324/uploads/${data.foto}`
+                              : `http://192.168.158.140:1324/uploads/mypic-1660932210817.jpg`
+                          }
+                          // imageSampah={`file://${data.foto.path}`}
                           title={data.nama_pelapor}
                           tanggal={data.tanggal}
-                          imgLeft={ICDiangkutDisabled}
-                          imgCenter={ICSwapGray}
-                          imgRight={ICNotAngkut}
-                          status="Telah Diangkut"
-                          onPress={() => navigation.navigate("UploadSampahPS")}
+                          imgLeft={
+                            data.status === 2 ? ICDiangkut : ICDiangkutDisabled
+                          }
+                          imgCenter={
+                            data.status === 1 ? ICSwap : ICSwapGray
+
+                            // ICSwapGray
+                          }
+                          imgRight={
+                            data.status === 0
+                              ? ICNotAngkut
+                              : ICNotAngkutDisabled
+                          }
+                          status={data.status}
+                          onPress={() =>
+                            navigation.navigate("UploadSampahPS", {
+                              data,
+                            })
+                          }
                         />
                       </>
                     );
@@ -104,7 +157,7 @@ const DetailOrder = ({ navigation }) => {
                   <></>
                 )}
 
-                <CardDetailOrder
+                {/* <CardDetailOrder
                   imgLeft={ICDiangkutDisabled}
                   imgCenter={ICSwapGray}
                   imgRight={ICNotAngkut}
@@ -138,10 +191,10 @@ const DetailOrder = ({ navigation }) => {
                   imgRight={ICNotAngkut}
                   status="Telah Diangkut"
                   onPress={() => navigation.navigate("UploadSampahPS")}
-                />
-              </View>
+                /> */}
+              </ScrollView>
             </View>
-          </ScrollView>
+          </View>
         </>
       ) : null}
       {namaHeader == "Kanan" ? (
@@ -197,12 +250,52 @@ const DetailOrder = ({ navigation }) => {
             }}
           >
             <View style={{ alignItems: "center" }}>
-              <CardRiwayatOrder
+              {riwayat() ? (
+                riwayat().map((data) => {
+                  // console.log(data);
+                  return (
+                    <>
+                      <CardRiwayatOrder
+                        data={data}
+                        alamat={data.alamat_lengkap}
+                        imageSampah={
+                          typeof data.foto === "string"
+                            ? `http://192.168.158.140:1324/uploads/${data.foto}`
+                            : `http://192.168.158.140:1324/uploads/mypic-1660932210817.jpg`
+                        }
+                        // imageSampah={`file://${data.foto.path}`}
+                        title={data.nama_pelapor}
+                        tanggal={data.tanggal}
+                        imgLeft={
+                          data.status === 2 ? ICDiangkut : ICDiangkutDisabled
+                        }
+                        imgCenter={
+                          data.status === 1 ? ICSwap : ICSwapGray
+
+                          // ICSwapGray
+                        }
+                        imgRight={
+                          data.status === 0 ? ICNotAngkut : ICNotAngkutDisabled
+                        }
+                        status={data.status}
+                        onPress={() =>
+                          navigation.navigate("UploadSampahPS", {
+                            data,
+                          })
+                        }
+                      />
+                    </>
+                  );
+                })
+              ) : (
+                <></>
+              )}
+              {/* <CardRiwayatOrder
                 imgLeft={ICDiangkut}
                 imgCenter={ICSwapGray}
                 imgRight={ICNotAngkutDisabled}
                 status="Telah Diangkut"
-              />
+              /> */}
             </View>
           </View>
         </>

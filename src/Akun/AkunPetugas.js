@@ -41,7 +41,7 @@ const AkunPetugas = ({ navigation }) => {
           }}
         >
           <TouchableOpacity
-            onPress={() => navigation.navigate("UbahProfilePetugas")}
+            onPress={() => navigation.navigate("UbahProfilePS")}
             style={{
               backgroundColor: "white",
               width: "80%",

@@ -1,4 +1,5 @@
 import {
+  Alert,
   Image,
   StyleSheet,
   Text,
@@ -34,16 +35,26 @@ const Login = ({ navigation }) => {
     // console.log("login");
     // navigation.navigate("MyTabs");
 
-    let find = user.find(
-      (data) =>
-        data.username === loginInput.username &&
-        data.password === loginInput.password
-    );
-    if (find) {
-      await asyncStoreData(asyncDataUser, find);
+    try {
+      let find = user.find(
+        (data) =>
+          data.username === loginInput.username &&
+          data.password === loginInput.password
+      );
+      if (find) {
+        console.log("masuk sini");
+        await asyncStoreData(asyncDataUser, find);
 
-      dispatch(setDataUser(find));
-      navigation.navigate("MyTabs");
+        dispatch(setDataUser(find));
+        // navigation.navigate("MyTabs");
+        // setTimeout(() => {
+        navigation.navigate("Home");
+        // }, 250);
+      } else {
+        Alert.alert("username atau password yang anda masukan salah");
+      }
+    } catch {
+      Alert.alert("username atau password yang anda masukan salah");
     }
 
     // const formDataLogin = new FormData();
