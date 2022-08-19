@@ -94,6 +94,7 @@ const DetailSampah = ({ navigation }) => {
               justifyContent: "center",
               alignContent: "center",
               alignSelf: "center",
+              width: "100%",
             }}
           >
             <ScrollView
@@ -116,7 +117,7 @@ const DetailSampah = ({ navigation }) => {
                       />
                     );
                   })}
-              {listSampah.length > 0 ? (
+              {/* {listSampah.length > 0 ? (
                 listSampah.map((data) => {
                   return (
                     <CardDetailSampah
@@ -148,7 +149,7 @@ const DetailSampah = ({ navigation }) => {
                     status="Belum Diangkut - dummy"
                   />
                 </>
-              )}
+              )} */}
             </ScrollView>
           </View>
         </>
@@ -206,7 +207,7 @@ const DetailSampah = ({ navigation }) => {
             }}
           >
             <View style={{ alignItems: "center" }}>
-              <CardRiwayatSampah
+              {/* <CardRiwayatSampah
                 imgLeft={ICDiangkut}
                 imgCenter={ICSwapGray}
                 imgRight={ICNotAngkutDisabled}
@@ -223,7 +224,7 @@ const DetailSampah = ({ navigation }) => {
                 imgCenter={ICSwapGray}
                 imgRight={ICNotAngkut}
                 status="Belum Diangkut"
-              />
+              /> */}
             </View>
           </View>
         </>

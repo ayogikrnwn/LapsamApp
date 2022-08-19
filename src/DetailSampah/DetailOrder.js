@@ -23,6 +23,8 @@ const DetailOrder = ({ navigation }) => {
 
   const selector = useSelector((state) => state.data);
 
+  console.log("selector", selector.listDummySampah);
+
   return (
     <View style={{ flex: 1, backgroundColor: "white" }}>
       {namaHeader == "Kiri" ? (
