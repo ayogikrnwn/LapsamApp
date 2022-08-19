@@ -11,7 +11,7 @@ import { StyleSheet, Text } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import Router from "./Router";
 
-import store from "./app/store";
+import store from "./redux/store";
 import { Provider } from "react-redux";
 
 const App = () => {
@@ -25,24 +25,5 @@ const App = () => {
     </>
   );
 };
-
-const styles = StyleSheet.create({
-  sectionContainer: {
-    marginTop: 32,
-    paddingHorizontal: 24,
-  },
-  sectionTitle: {
-    fontSize: 24,
-    fontWeight: "600",
-  },
-  sectionDescription: {
-    marginTop: 8,
-    fontSize: 18,
-    fontWeight: "400",
-  },
-  highlight: {
-    fontWeight: "700",
-  },
-});
 
 export default App;

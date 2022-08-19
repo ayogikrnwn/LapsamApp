@@ -1,9 +1,14 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { asyncStoreData } from "../utils";
 
 export const counterSlice = createSlice({
   name: "counter",
   initialState: {
     value: 0,
+    image: "",
+    dataUser: false,
+    listSampah: false,
+    listDummySampah: [],
   },
   reducers: {
     increment: (state) => {
@@ -16,13 +21,37 @@ export const counterSlice = createSlice({
     decrement: (state) => {
       state.value -= 1;
     },
+    setImage: (state, action) => {
+      state.image = action.payload;
+    },
     incrementByAmount: (state, action) => {
       state.value += action.payload;
+    },
+    setDataUser: (state, action) => {
+      state.dataUser = action.payload;
+    },
+    setDummySampah: (state, action) => {
+      state.listDummySampah = action.payload;
+
+      asyncStoreData("listDummySampah", action.payload);
+    },
+    setListSampah: (state, action) => {
+      state.listSampah = action.payload.filter(
+        (data) => data.id_masy === state.dataUser.id_masy
+      );
     },
   },
 });
 
 // Action creators are generated for each case reducer function
-export const { increment, decrement, incrementByAmount } = counterSlice.actions;
+export const {
+  increment,
+  decrement,
+  incrementByAmount,
+  setImage,
+  setDataUser,
+  setListSampah,
+  setDummySampah,
+} = counterSlice.actions;
 
 export default counterSlice.reducer;

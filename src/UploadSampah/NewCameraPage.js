@@ -15,7 +15,7 @@ import { useCameraDevices } from "react-native-vision-camera";
 import { useDispatch } from "react-redux";
 import { setImage } from "../redux/reducers";
 
-const CameraPage = ({ route, navigation }) => {
+const NewCameraPage = ({ setIsCameraOpen }) => {
   const [loadTakePicture, setLoadTakePicture] = useState(false);
 
   const [images, setImages] = useState(false);
@@ -31,6 +31,7 @@ const CameraPage = ({ route, navigation }) => {
       alert("Silahkan Aktifkan Akses Kamera");
       Linking.openSettings();
     } else {
+      // console.log("cmr", cameraPermission);
     }
   };
 
@@ -46,15 +47,28 @@ const CameraPage = ({ route, navigation }) => {
   const photo = async () => {
     setLoadTakePicture(true);
     const take = await refCamera.current.takePhoto({
+      qualityPrioritization: "quality",
       flash: "on",
+      enableAutoRedEyeReduction: true,
     });
+    // await refCamera.current
+    //   .takeSnapshot({ format: "png", flash: "on" })
+    //   .then((res) => {
+    //     console.log("test", res);
+    //   });
+    // ({
+    //   qualityPrioritization: "quality",
+    //   flash: "on",
+    //   enableAutoRedEyeReduction: true,
+    // });
     setLoadTakePicture(false);
 
     setImages(take);
-
+    // console.log("refCamera.current.takePhoto", refCamera.current.takePhoto();
     dispatch(setImage(take));
-
-    navigation.goBack();
+    if (setIsCameraOpen) {
+      setIsCameraOpen(false, take);
+    }
   };
 
   return (
@@ -120,6 +134,6 @@ const CameraPage = ({ route, navigation }) => {
   );
 };
 
-export default CameraPage;
+export default NewCameraPage;
 
 const styles = StyleSheet.create({});
