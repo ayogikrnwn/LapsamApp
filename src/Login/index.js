@@ -42,7 +42,6 @@ const Login = ({ navigation }) => {
           data.password === loginInput.password
       );
       if (find) {
-        console.log("masuk sini");
         await asyncStoreData(asyncDataUser, find);
 
         dispatch(setDataUser(find));

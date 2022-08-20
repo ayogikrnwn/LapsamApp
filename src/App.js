@@ -16,7 +16,7 @@ import { Provider } from "react-redux";
 import { clearStorage } from "./utils";
 
 const App = () => {
-  // LogBox.ignoreAllLogs(true);
+  LogBox.ignoreAllLogs(true);
   React.useEffect(() => {
     // clearStorage()
   }, []);

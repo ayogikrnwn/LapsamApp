@@ -1,61 +1,67 @@
-import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
-import React from 'react'
-import TabItem from '../TabItem'
+import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import React from "react";
+import TabItem from "../TabItem";
 
 const MyTabBar = ({ state, descriptors, navigation }) => {
- 
+  return (
+    <View
+      style={{
+        flexDirection: "row",
+        justifyContent: "space-between",
+        paddingHorizontal: 20,
+        paddingVertical: 6,
+        backgroundColor: "white",
+        borderRadius: 20,
+      }}
+    >
+      {state.routes.map((route, index) => {
+        const { options } = descriptors[route.key];
+        const label =
+          options.tabBarLabel !== undefined
+            ? options.tabBarLabel
+            : options.title !== undefined
+            ? options.title
+            : route.name;
 
-    return (
-      <View style={{  flexDirection: 'row',
-      justifyContent: 'space-between',
-      paddingHorizontal: 20,
-      paddingVertical: 6,
-      backgroundColor: 'white',
-      borderRadius: 20}}>
-        {state.routes.map((route, index) => {
-          const { options } = descriptors[route.key];
-          const label =
-            options.tabBarLabel !== undefined
-              ? options.tabBarLabel
-              : options.title !== undefined
-              ? options.title
-              : route.name;
-  
-          const isFocused = state.index === index;
-  
-          const onPress = () => {
-            const event = navigation.emit({
-              type: 'tabPress',
-              target: route.key,
-              canPreventDefault: true,
+        const isFocused = state.index === index;
+
+        const onPress = () => {
+          const event = navigation.emit({
+            type: "tabPress",
+            target: route.key,
+            canPreventDefault: true,
+          });
+
+          if (!isFocused && !event.defaultPrevented) {
+            // The `merge: true` option makes sure that the params inside the tab screen are preserved
+            navigation.navigate({
+              name: route.name,
+              params: { focused: isFocused },
+              merge: true,
             });
-  
-            if (!isFocused && !event.defaultPrevented) {
-              // The `merge: true` option makes sure that the params inside the tab screen are preserved
-              navigation.navigate({ name: route.name, merge: true });
-            }
-          };
-  
-          const onLongPress = () => {
-            navigation.emit({
-              type: 'tabLongPress',
-              target: route.key,
-            });
-          };
-  
-          return (
-            <TabItem
+          }
+        };
+
+        const onLongPress = () => {
+          navigation.emit({
+            type: "tabLongPress",
+            target: route.key,
+          });
+        };
+
+        return (
+          <TabItem
             key={index}
             title={label}
             active={isFocused}
             onPress={onPress}
             onLongPress={onLongPress}
           />
-          );
-        })}
-      </View>
-    );
-  }
-export default MyTabBar
+        );
+      })}
+    </View>
+  );
+};
+export default MyTabBar;
 
-const styles = StyleSheet.create({})
+const styles = StyleSheet.create({});

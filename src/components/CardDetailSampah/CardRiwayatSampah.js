@@ -65,6 +65,8 @@ const CardRiwayatSampah = ({
               fontSize: 14,
               marginTop: 8,
             }}
+            numberOfLines={2}
+            ellipsizeMode="tail"
           >
             {alamat || "Jl. Lorem Ipsum dolor si amet"}
           </Text>

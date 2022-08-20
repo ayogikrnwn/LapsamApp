@@ -44,8 +44,6 @@ const Home = ({ navigation }) => {
     // }
   };
 
-  console.log("listDummySampah", listDummySampah);
-
   return (
     <View style={{ flex: 1 }}>
       <HeaderHome />
@@ -71,7 +69,7 @@ const Home = ({ navigation }) => {
                     <CardStatusSampah
                       date={data.tanggal}
                       title={data.nama_pelapor}
-                      img={ICDone}
+                      img={data.status === 0 ? ICFail : ICDone}
                     />
                   );
                 })

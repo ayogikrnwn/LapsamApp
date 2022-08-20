@@ -49,7 +49,6 @@ const DetailSampah = ({ navigation }) => {
 
   useFocusEffect(
     React.useCallback(() => {
-      console.log("masuk sini");
       // const unsubscribe = API.subscribe(userId, (focus) => setFocus(data));
       // console.log("count", count);
 

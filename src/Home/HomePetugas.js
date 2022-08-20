@@ -52,15 +52,18 @@ const HomePetugas = ({ navigation }) => {
             </View>
 
             {detail() &&
-              detail().map((data) => {
-                return (
-                  <CardStatusPetugas
-                    tanggal={data.tanggal}
-                    alamat={data.alamat_lengkap}
-                    img={data.status === 0 ? ICFail : ICDone}
-                  />
-                );
-              })}
+              detail()
+                .slice(0, 3)
+
+                .map((data) => {
+                  return (
+                    <CardStatusPetugas
+                      tanggal={data.tanggal}
+                      alamat={data.alamat_lengkap}
+                      img={data.status === 0 ? ICFail : ICDone}
+                    />
+                  );
+                })}
             {/* 
             <CardStatusPetugas img={ICDone} />
             <CardStatusPetugas img={ICDone} />

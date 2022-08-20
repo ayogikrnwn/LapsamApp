@@ -82,7 +82,6 @@ const MyTabsIuran = () => {
 };
 const Router = () => {
   const isLogin = useSelector((state) => state.data.dataUser);
-  console.log(isLogin);
 
   return (
     <Stack.Navigator initialRouteName="Splash">
@@ -137,6 +136,12 @@ const Router = () => {
           component={MyTabsPetugas}
           options={{ headerShown: false }}
         />
+      ) : isLogin.role === "petugas-iuran" ? (
+        <Stack.Screen
+          name="MyTabsIuran"
+          component={MyTabsIuran}
+          options={{ headerShown: false }}
+        />
       ) : (
         <Stack.Screen
           name="MyTabs"
@@ -145,11 +150,6 @@ const Router = () => {
         />
       )}
 
-      <Stack.Screen
-        name="MyTabsIuran"
-        component={MyTabsIuran}
-        options={{ headerShown: false }}
-      />
       <Stack.Screen
         name="DetailOrder"
         component={DetailOrder}

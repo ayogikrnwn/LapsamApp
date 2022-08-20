@@ -1,4 +1,4 @@
-import { ScrollView, StyleSheet, Text, View } from "react-native";
+import { Alert, ScrollView, StyleSheet, Text, View } from "react-native";
 import React, { useState } from "react";
 import HeaderComponent from "../components/HeaderComponent/HeaderComponent";
 import InputText from "../Input/InputText";
@@ -17,23 +17,49 @@ const UbahProfile = ({ navigation }) => {
     updated_at: "",
     username: "",
   });
+  const {
+    alamat,
+    created_at,
+    nama_masy,
+    nik_masy,
+    no_hp_masy,
+    password,
+    updated_at,
+    username,
+  } = dataUser;
 
   const dispatch = useDispatch();
   const handleRegister = async () => {
-    let newState = await asyncGetData("userRegister");
+    if (
+      alamat &&
+      created_at &&
+      nama_masy &&
+      nik_masy &&
+      no_hp_masy &&
+      password &&
+      updated_at &&
+      username
+    ) {
+      let newState = await asyncGetData("userRegister");
 
-    let elementIndex = newState.findIndex(
-      (obj) => obj.id_masy === dataUser.id_masy
-    );
+      let elementIndex = newState.findIndex(
+        (obj) => obj.id_masy === dataUser.id_masy
+      );
 
-    newState[elementIndex] = dataUser;
+      newState[elementIndex] = dataUser;
 
-    // console.log("newState", newState);
+      dispatch(reduxSetDataUser(dataUser));
+      await asyncStoreData(asyncDataUser, dataUser);
+      await asyncStoreData("userRegister", newState);
 
-    dispatch(reduxSetDataUser(dataUser));
-    await asyncStoreData(asyncDataUser, dataUser);
-    await asyncStoreData("userRegister", newState);
-    navigation.navigate("Home");
+      Alert.alert("Berhasil menyimpan");
+
+      navigation.goBack();
+    } else {
+      Alert.alert("Semua bidang harus terisi");
+    }
+
+    // navigation.navigate("Home");
 
     // newState[elementIndex].status = 2;
     // newState[elementIndex].petugas = selector.dataUser.nama_petugas;

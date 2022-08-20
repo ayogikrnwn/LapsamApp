@@ -19,61 +19,133 @@ import DropDownPicker from "react-native-dropdown-picker";
 
 import { useSelector } from "react-redux";
 
-import { useFocusEffect } from "@react-navigation/native";
+import { useFocusEffect, useIsFocused } from "@react-navigation/native";
 import NewCameraPage from "./NewCameraPage";
-import { addPoint, inputSampah } from "../utils";
+import { addPoint, asyncDataUser, asyncGetData, inputSampah } from "../utils";
 import { useDispatch } from "react-redux";
 import axios from "axios";
 import { setDummySampah } from "../redux/reducers";
 
-const uploadSampahMs = ({ route, navigation }) => {
-  const [openUser, setOpenUser] = useState(false);
-  const [valueUser, setValueUser] = useState(null);
-  const [size, setSize] = useState({
+let mounted = false;
+let defaultOpenUser = false,
+  defaultValueUser = null,
+  defaultSize = {
     kecil: 0,
     sedang: 0,
     besar: 0,
-  });
+  },
+  defaultUser = [{ label: "Tambah Alamat", value: "tambah alamat" }];
+const uploadSampahMs = ({ route, navigation }) => {
+  const [openUser, setOpenUser] = useState(defaultOpenUser);
+  const [valueUser, setValueUser] = useState(defaultValueUser);
+  const [size, setSize] = useState(defaultSize);
+  const [user, setUser] = useState(defaultUser);
+  const [image, setImage] = React.useState(false);
+  const [loading, setLoading] = useState(false);
 
   const [isCameraOpen, setIsCameraOpen] = useState(false);
-
   const dispatch = useDispatch();
   const selector = useSelector((state) => state.data);
-
-  // console.log("usrselected", valueUser);
-  const [user, setUser] = useState([
-    { label: "Tambah Alamat", value: "tambah alamat" },
-  ]);
-
-  const [image, setImage] = React.useState(false);
 
   const count = useSelector((state) => state.data);
 
   const { listDummySampah } = count;
 
-  React.useEffect(() => {
+  const isFocused = useIsFocused();
+
+  const firstRunning = async () => {
     if (selector.listAlamat.length > 0) {
-      // console.log("selector.listAlamat", selector.listAlamat);
-      const filter = selector.listAlamat.filter(
-        (data) => data.id_masy === selector.dataUser.id_masy
-      );
-      if (filter.length > 0) {
-        let loop = filter.map((data) => {
-          return {
-            label: data.tandai_sebagai,
-            value: `${data.nama_jalan || "Jl. Lorem Ipsum"}
-    ${data.kelurahan || "Kelurahan"} ${data.kecamatan || "kecamatan"}
-    ${data.kota || "Kabupaten"} kode pos ${data.kode_pos || 45231}`,
-          };
-        });
-        setUser(loop);
-      } else {
-        setUser(user);
-      }
+      await asyncGetData("listAlamat").then((res) => {
+        if (res !== null) {
+          const filter = res.filter(
+            (data) => data.id_masy === selector.dataUser.id_masy
+          );
+          if (filter.length > 0) {
+            let loop = filter.map((data) => {
+              return {
+                label: data.tandai_sebagai,
+                value: `${data.nama_jalan || "Jl. Lorem Ipsum"}
+        ${data.kelurahan || "Kelurahan"} ${data.kecamatan || "kecamatan"}
+        ${data.kota || "Kabupaten"} kode pos ${data.kode_pos || 45231}`,
+              };
+            });
+            setUser(loop);
+          } else {
+            setUser(defaultUser);
+          }
+        } else {
+          setUser(defaultUser);
+        }
+      });
     }
+  };
+
+  React.useEffect(() => {
+    firstRunning();
   }, []);
 
+  useFocusEffect(
+    React.useCallback(() => {
+      let isActive = true;
+
+      const firstRunning = async () => {
+        if (selector.listAlamat.length > 0) {
+          await asyncGetData("listAlamat").then(async (res) => {
+            const newDataUser = await asyncGetData(asyncDataUser);
+            if (res !== null) {
+              const filter = res.filter(
+                (data) => data.id_masy === newDataUser.id_masy
+              );
+              if (filter.length > 0) {
+                let loop = filter.map((data) => {
+                  return {
+                    label: data.tandai_sebagai,
+                    value: `${data.nama_jalan || "Jl. Lorem Ipsum"} ${
+                      data.kelurahan || "Kelurahan"
+                    } ${data.kecamatan || "kecamatan"} ${
+                      data.kota || "Kabupaten"
+                    } kode pos ${data.kode_pos || 45231}`,
+                  };
+                });
+                if (isActive) {
+                  setUser(user);
+                  isActive = false;
+                }
+                setUser(loop);
+              } else {
+                if (isActive) {
+                  setUser(defaultUser);
+                  isActive = false;
+                }
+              }
+            } else {
+              if (isActive) {
+                setUser(defaultUser);
+                isActive = false;
+              }
+            }
+          });
+        }
+      };
+
+      firstRunning();
+      // const unsubscribe = API.subscribe(userId, user => setUser(user));
+
+      return () => {
+        isActive = true;
+
+        setOpenUser(defaultOpenUser);
+        setValueUser(defaultValueUser);
+        setSize(defaultSize);
+        setUser(defaultUser);
+        setImage(false);
+        setLoading(false);
+      };
+    }, [])
+  );
+
   const handleLaporkanSampah = () => {
+    setLoading(true);
     const { nama_masy, id_masy, no_hp_masy } = count.dataUser;
     const total = size.kecil + size.besar + size.sedang;
     const { kecil, sedang, besar } = size;
@@ -98,10 +170,8 @@ const uploadSampahMs = ({ route, navigation }) => {
       no_hp_masy: no_hp_masy,
     };
 
-    if (image && kecil && sedang && besar && valueUser) {
+    if (image && (kecil || sedang || besar) && valueUser) {
       const formData = new FormData();
-
-      console.log(image.path);
 
       formData.append("mypic", {
         uri: `file://${image.path}`,
@@ -123,7 +193,10 @@ const uploadSampahMs = ({ route, navigation }) => {
             dataUser: count.dataUser,
             dispatch: dispatch,
           }).then(async (res) => {
+            Alert.alert("berhasil melaporkan sampah");
+
             await dispatch(setDummySampah([...listDummySampah, body]));
+            setLoading(false);
             navigation.goBack();
           });
         })
@@ -131,6 +204,8 @@ const uploadSampahMs = ({ route, navigation }) => {
           console.log(err);
         });
     } else {
+      setLoading(false);
+
       Alert.alert("Mohon isi semua bagian");
     }
 
@@ -188,38 +263,38 @@ const uploadSampahMs = ({ route, navigation }) => {
           <View style={{ flex: 1, backgroundColor: "white" }}>
             <HeaderComponent title="Laporkan Sampah" />
 
-            <TouchableOpacity
-              style={{ alignItems: "center" }}
-              onPress={() => {
-                setIsCameraOpen(true);
-              }}
-            >
-              {/* {image && ( */}
-              <Image
-                source={
-                  image
-                    ? {
-                        uri:
-                          `file://${image.path}` ||
-                          `file://${count.image.path}`,
-                      }
-                    : ILPFoto
-                }
-                style={{
-                  height: 200,
-                  width: 200,
-                  borderRadius: 20,
-                  // backgroundColor: "lightblue",
-                }}
-              />
-              {/* )} */}
-            </TouchableOpacity>
-
             <ScrollView
               style={{
                 marginTop: 10,
               }}
             >
+              <TouchableOpacity
+                style={{ alignItems: "center" }}
+                onPress={() => {
+                  setIsCameraOpen(true);
+                }}
+              >
+                {/* {image && ( */}
+                <Image
+                  source={
+                    image
+                      ? {
+                          uri:
+                            `file://${image.path}` ||
+                            `file://${count.image.path}`,
+                        }
+                      : ILPFoto
+                  }
+                  style={{
+                    height: 200,
+                    width: 200,
+                    borderRadius: 20,
+                    // backgroundColor: "lightblue",
+                  }}
+                />
+                {/* )} */}
+              </TouchableOpacity>
+
               <View
                 style={{
                   height: "100%",
@@ -306,6 +381,7 @@ const uploadSampahMs = ({ route, navigation }) => {
                   <View>
                     <View>
                       <InputTextMini
+                        value={size.kecil}
                         placeholder={"0"}
                         onChangeText={(e) => setSize({ ...size, kecil: e })}
                       />
@@ -313,6 +389,7 @@ const uploadSampahMs = ({ route, navigation }) => {
 
                     <View style={{ marginTop: 30 }}>
                       <InputTextMini
+                        value={size.sedang}
                         placeholder={"0"}
                         onChangeText={(e) => setSize({ ...size, sedang: e })}
                       />
@@ -320,6 +397,7 @@ const uploadSampahMs = ({ route, navigation }) => {
 
                     <View style={{ marginTop: 30 }}>
                       <InputTextMini
+                        value={size.besar}
                         placeholder={"0"}
                         onChangeText={(e) => setSize({ ...size, besar: e })}
                       />
@@ -335,7 +413,8 @@ const uploadSampahMs = ({ route, navigation }) => {
                   }}
                 >
                   <ButtonSecondary
-                    title="Angkut"
+                    disabled={loading}
+                    title={loading ? "mengangkut..." : "Angkut"}
                     onPress={() => {
                       handleLaporkanSampah();
                     }}

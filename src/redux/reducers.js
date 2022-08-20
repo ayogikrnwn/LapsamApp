@@ -10,6 +10,7 @@ export const counterSlice = createSlice({
     listSampah: false,
     listDummySampah: [],
     listAlamat: [],
+    redemPoint: [],
   },
   reducers: {
     increment: (state) => {
@@ -47,6 +48,11 @@ export const counterSlice = createSlice({
     setListAlamat: (state, action) => {
       if (action.payload !== null && typeof action.payload === "object") {
         state.listAlamat = action.payload;
+      }
+    },
+    setRedemPoint: (state, action) => {
+      if (action.payload !== null && typeof action.payload === "object") {
+        state.redemPoint = action.payload;
       }
     },
   },

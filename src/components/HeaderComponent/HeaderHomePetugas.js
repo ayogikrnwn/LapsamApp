@@ -32,7 +32,7 @@ const HeaderHomePetugas = ({ title }) => {
             </Text>
             <Text style={{ fontSize: 14, fontWeight: "bold", color: "black" }}>
               {" "}
-              Honda Beat
+              Mobil 1
             </Text>
           </View>
         </View>

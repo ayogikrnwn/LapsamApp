@@ -19,11 +19,13 @@ const TambahAlamat = ({ navigation }) => {
     nomor_handphone: "",
     nama_alamat: "",
   });
+  const [loading, setLoading] = useState(false);
 
   const selector = useSelector((state) => state.data);
   const dispatch = useDispatch();
 
   const handleRegister = async () => {
+    setLoading(true);
     const {
       tandai_sebagai,
       nama_jalan,
@@ -38,17 +40,16 @@ const TambahAlamat = ({ navigation }) => {
 
     // await AsyncStorage.removeItem("listAlamat");
     // let listAlamat = await AsyncStorage.getItem("listAlamat");
-    // console.log("listAlamat", listAlamat);
 
     if (id_masy) {
       if (
-        tandai_sebagai ||
-        nama_jalan ||
-        kelurahan ||
-        kecamatan ||
-        kota ||
-        kode_pos ||
-        nomor_handphone ||
+        tandai_sebagai &&
+        nama_jalan &&
+        kelurahan &&
+        kecamatan &&
+        kota &&
+        kode_pos &&
+        nomor_handphone &&
         nama_alamat
       ) {
         const body = {
@@ -66,8 +67,13 @@ const TambahAlamat = ({ navigation }) => {
 
         await asyncStoreData("listAlamat", newBody);
         dispatch(setListAlamat(newBody));
+        setLoading(false);
+        Alert.alert("Alamat Berhasil ditambahkan");
+
         navigation.goBack();
       } else {
+        setLoading(false);
+
         Alert.alert("mohon isi semua form");
       }
     }
@@ -153,7 +159,11 @@ const TambahAlamat = ({ navigation }) => {
               }
             />
 
-            <ButtonPrimary title="Simpan" onPress={handleRegister} />
+            <ButtonPrimary
+              disabled={loading}
+              title={loading ? "Menyimpan..." : "Simpan"}
+              onPress={handleRegister}
+            />
           </View>
         </ScrollView>
       </View>
