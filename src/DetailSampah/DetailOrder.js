@@ -240,16 +240,17 @@ const DetailOrder = ({ navigation }) => {
           <View
             style={{
               backgroundColor: "#5FD068",
-              height: "100%",
+              // height: "100%",
               width: "100%",
               marginTop: 10,
               borderTopLeftRadius: 26,
               borderTopRightRadius: 26,
               paddingHorizontal: 10,
               paddingVertical: 20,
+              flex: 1,
             }}
           >
-            <View style={{ alignItems: "center" }}>
+            <ScrollView>
               {riwayat() ? (
                 riwayat().map((data) => {
                   // console.log(data);
@@ -290,13 +291,7 @@ const DetailOrder = ({ navigation }) => {
               ) : (
                 <></>
               )}
-              {/* <CardRiwayatOrder
-                imgLeft={ICDiangkut}
-                imgCenter={ICSwapGray}
-                imgRight={ICNotAngkutDisabled}
-                status="Telah Diangkut"
-              /> */}
-            </View>
+            </ScrollView>
           </View>
         </>
       ) : null}

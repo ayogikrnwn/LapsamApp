@@ -1,12 +1,21 @@
 import { StyleSheet, Text, TextInput, View } from "react-native";
 import React from "react";
 
-const InputText = ({ title, secureText, placeholder, onChangeText, value }) => {
+const InputText = ({
+  title,
+  secureText,
+  placeholder,
+  onChangeText,
+  value,
+  disabled,
+}) => {
   return (
     <View style={{ width: "70%" }}>
       <Text style={{ color: "black", marginBottom: 8 }}>{title}</Text>
       {value ? (
         <TextInput
+          selectTextOnFocus={!disabled}
+          editable={!disabled}
           // defaultValue={value}
           value={value}
           style={{
@@ -22,6 +31,8 @@ const InputText = ({ title, secureText, placeholder, onChangeText, value }) => {
         />
       ) : (
         <TextInput
+          selectTextOnFocus={!disabled}
+          editable={!disabled}
           style={{
             borderWidth: 1,
             borderColor: "#5FD068",

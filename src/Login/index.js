@@ -1,6 +1,7 @@
 import {
   Alert,
   Image,
+  ScrollView,
   StyleSheet,
   Text,
   TextInput,
@@ -82,7 +83,9 @@ const Login = ({ navigation }) => {
       <View style={{ marginTop: -120, marginLeft: 30 }}>
         <Image source={ICLapsam} />
       </View>
-      <View style={{ flex: 1 }}>
+      <ScrollView
+      // style={{ flex: 1 }}
+      >
         <View style={{ alignItems: "center", marginTop: 70 }}>
           <InputText
             title="Username"
@@ -116,7 +119,7 @@ const Login = ({ navigation }) => {
 
           <ButtonPrimary title="Login" onPress={handleLogin} />
         </View>
-      </View>
+      </ScrollView>
     </View>
   );
 };

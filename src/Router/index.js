@@ -33,6 +33,7 @@ import HomeIuran from "../Home/HomeIuran";
 import Pembayaran from "../Pembayaran";
 import RedeemPoint from "../Akun/RedeemPoint";
 import { useSelector } from "react-redux";
+import CallCenter from "../CallCenter";
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -155,6 +156,13 @@ const Router = () => {
         component={DetailOrder}
         options={{ headerShown: false }}
       />
+
+      <Stack.Screen
+        name="CallCenter"
+        component={CallCenter}
+        options={{ headerShown: false }}
+      />
+
       <Stack.Screen
         name="DetailSampah"
         component={DetailSampah}

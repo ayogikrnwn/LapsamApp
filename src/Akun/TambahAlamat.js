@@ -8,6 +8,8 @@ import { useSelector, useDispatch } from "react-redux";
 import { setListAlamat } from "../redux/reducers";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
+let clicked = false;
+
 const TambahAlamat = ({ navigation }) => {
   const [alamat, setAlamat] = useState({
     tandai_sebagai: "",
@@ -162,7 +164,10 @@ const TambahAlamat = ({ navigation }) => {
             <ButtonPrimary
               disabled={loading}
               title={loading ? "Menyimpan..." : "Simpan"}
-              onPress={handleRegister}
+              onPress={(e) => {
+                clicked = true;
+                handleRegister();
+              }}
             />
           </View>
         </ScrollView>

@@ -29,8 +29,17 @@ const CardRiwayatOrder = ({
       <Text style={{ fontWeight: "200", color: "black", color: "#5FD068" }}>
         Sampah Telah Diangkut
       </Text>
-      <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
-        <View>
+      <View
+        style={{
+          flexDirection: "row",
+          justifyContent: "space-between",
+        }}
+      >
+        <View
+          style={{
+            flex: 1,
+          }}
+        >
           <Text
             style={{
               fontWeight: "bold",

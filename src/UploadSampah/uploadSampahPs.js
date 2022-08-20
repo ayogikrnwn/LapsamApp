@@ -76,9 +76,10 @@ const uploadSampahPs = ({ route, navigation }) => {
       })
         .then(async (res) => {
           await asyncStoreData(listDummySampah, newState);
+          Alert.alert("Sampah berhasil diangkut");
 
           dispatch(setDummySampah(newState));
-          navigation.goBack();
+          navigation.navigate("Home");
         })
         .catch((err) => {
           console.log(err);

@@ -140,6 +140,7 @@ const uploadSampahMs = ({ route, navigation }) => {
         setUser(defaultUser);
         setImage(false);
         setLoading(false);
+        setIsCameraOpen(false);
       };
     }, [])
   );

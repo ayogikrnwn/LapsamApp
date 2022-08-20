@@ -82,6 +82,9 @@ const Akun = ({ navigation }) => {
               alignItems: "center",
               paddingHorizontal: 10,
             }}
+            onPress={() => {
+              navigation.navigate("CallCenter");
+            }}
           >
             <Image source={ICcall} style={{ width: 24, height: 24 }} />
             <Text

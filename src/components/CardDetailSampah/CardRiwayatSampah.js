@@ -46,8 +46,19 @@ const CardRiwayatSampah = ({
       <Text style={{ fontWeight: "200", color: "black", color: "#5FD068" }}>
         {newStatus.text || "Sampah Telah Diangkut"}
       </Text>
-      <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
-        <View>
+      <View
+        style={{
+          flexDirection: "row",
+          justifyContent: "space-between",
+
+          // maxWidth: "70%",
+        }}
+      >
+        <View
+          style={{
+            flex: 1,
+          }}
+        >
           <Text
             style={{
               fontWeight: "bold",

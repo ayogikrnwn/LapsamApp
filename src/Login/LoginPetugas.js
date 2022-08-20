@@ -1,5 +1,6 @@
 import {
   Image,
+  ScrollView,
   StyleSheet,
   Text,
   TextInput,
@@ -95,7 +96,9 @@ const LoginPetugas = ({ navigation }) => {
           Petugas
         </Text>
       </View>
-      <View style={{ flex: 1 }}>
+      <ScrollView
+      //  style={{ flex: 1 }}
+      >
         <View style={{ alignItems: "center", marginTop: 70 }}>
           <InputText
             title="Username"
@@ -119,7 +122,7 @@ const LoginPetugas = ({ navigation }) => {
 
           <ButtonPrimary title="Login" onPress={handleLogin} />
         </View>
-      </View>
+      </ScrollView>
     </View>
   );
 };

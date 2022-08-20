@@ -44,8 +44,18 @@ const CardDetailSampah = ({
       <Text style={{ fontWeight: "200", color: "black" }}>
         {tanggal || "08:17, 14 Juni 2022"}
       </Text>
-      <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
-        <View>
+      <View
+        style={{
+          flexDirection: "row",
+          justifyContent: "space-between",
+          // maxWidth: "70%",
+        }}
+      >
+        <View
+          style={{
+            flex: 1,
+          }}
+        >
           <Text
             style={{
               fontWeight: "bold",

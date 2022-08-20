@@ -25,6 +25,7 @@ const UbahProfilePetugas = ({ navigation }) => {
         <ScrollView showsVerticalScrollIndicator={false}>
           <View style={{ alignItems: "center", marginTop: 60 }}>
             <InputText
+              disabled={true}
               value={nama_petugas}
               title="Nama"
               onChangeText={(e) =>
@@ -35,6 +36,7 @@ const UbahProfilePetugas = ({ navigation }) => {
               }
             />
             <InputText
+              disabled={true}
               value={no_hp_petugas}
               title="Nomor Ponsel"
               onChangeText={(e) =>
@@ -45,6 +47,7 @@ const UbahProfilePetugas = ({ navigation }) => {
               }
             />
             <InputText
+              disabled={true}
               value={"-"}
               title="TPS"
               onChangeText={(e) =>
@@ -55,6 +58,7 @@ const UbahProfilePetugas = ({ navigation }) => {
               }
             />
             <InputText
+              disabled={true}
               value={alamat}
               title="Alamat"
               onChangeText={(e) =>
@@ -65,7 +69,8 @@ const UbahProfilePetugas = ({ navigation }) => {
               }
             />
             <InputText
-              value={"Honda Beat"}
+              disabled={true}
+              value={"Mobil 1"}
               title="Jenis Kendaraan"
               onChangeText={(e) =>
                 setRegisterInput({

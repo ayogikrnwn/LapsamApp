@@ -62,7 +62,11 @@ const CardDetailOrder = ({
           justifyContent: "space-between",
         }}
       >
-        <View>
+        <View
+          style={{
+            flex: 1,
+          }}
+        >
           <Text
             style={{
               fontWeight: "bold",
