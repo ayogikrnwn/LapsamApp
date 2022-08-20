@@ -15,9 +15,10 @@ import ButtonPrimary from "../components/Button/ButtonPrimary";
 import ButtonSecondary from "../components/Button/ButtonSecondary";
 import { setDataUser } from "../redux/reducers";
 import { asyncDataUser, asyncRemoveData } from "../utils";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 const AkunPetugas = ({ navigation }) => {
+  const selector = useSelector((state) => state.data.dataUser);
   const dispatch = useDispatch();
   return (
     <View style={{ flex: 1, backgroundColor: "white" }}>
@@ -25,7 +26,7 @@ const AkunPetugas = ({ navigation }) => {
         <View style={{ alignItems: "center", marginTop: 80 }}>
           <Image source={ILFoto} />
           <Text style={{ fontSize: 16, color: "black", fontWeight: "bold" }}>
-            Petugas
+            {selector.nama_petugas || "Petugas"}
           </Text>
         </View>
         <View

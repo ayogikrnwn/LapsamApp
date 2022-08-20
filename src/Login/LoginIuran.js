@@ -77,9 +77,9 @@ const LoginIuran = ({ navigation }) => {
         dispatch(setDataUser(findUser));
         await asyncStoreData(asyncDataUser, findUser);
 
-        navigation.navigate("MyTabsIuran");
+        // navigation.navigate("MyTabsIuran");
 
-        // navigation.navigate("Home");
+        navigation.navigate("Home");
       } else {
         Alert.alert("username atau password yang anda masukan salah");
       }

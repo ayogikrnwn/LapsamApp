@@ -8,13 +8,18 @@ const CardPembayaranDetail = ({
   imgCenter,
   imgRight,
   status,
+  alamat,
+  user,
+  nik,
+  label,
+  color,
 }) => {
   return (
     <View
       style={{
         backgroundColor: "white",
-        width: "90  %",
-        height: 130,
+        // width: "90  %",
+        // height: 130,
         borderRadius: 14,
         paddingHorizontal: 14,
         paddingVertical: 10,
@@ -28,10 +33,10 @@ const CardPembayaranDetail = ({
               fontWeight: "bold",
               color: "black",
               fontSize: 18,
-              marginTop: 8,
+              // marginTop: 8,
             }}
           >
-            Yacob
+            {user || "Yacob"}
           </Text>
           <Text
             style={{
@@ -41,7 +46,7 @@ const CardPembayaranDetail = ({
               marginTop: 8,
             }}
           >
-            Jl. Lorem Ipsum dolor si amet
+            {alamat || "Jl. Lorem Ipsum dolor si amet"}
           </Text>
           <Text
             style={{
@@ -52,7 +57,7 @@ const CardPembayaranDetail = ({
               fontWeight: "bold",
             }}
           >
-            Rp 100.000
+            {nik || "Rp 100.000"}
           </Text>
         </View>
         <View>
@@ -71,12 +76,12 @@ const CardPembayaranDetail = ({
           <View style={{ flexDirection: "row", marginTop: 9 }}>
             <TouchableOpacity
               style={{
-                width: 100,
+                minWidth: 120,
                 height: 50,
                 backgroundColor: "white",
                 borderRadius: 30,
                 borderWidth: 1,
-                borderColor: "green",
+                borderColor: color || "green",
               }}
               onPress={onPress}
             >
@@ -85,10 +90,11 @@ const CardPembayaranDetail = ({
                   textAlign: "center",
                   marginTop: 13,
                   fontWeight: "bold",
-                  color: "green",
+                  // color: "blue",
+                  color: color || "green",
                 }}
               >
-                Sudah Dibayar
+                {label || "Sudah Dibayar"}
               </Text>
             </TouchableOpacity>
           </View>

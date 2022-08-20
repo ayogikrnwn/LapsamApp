@@ -11,16 +11,21 @@ import {
   listDummySampah,
 } from "../utils";
 import { useDispatch, useSelector } from "react-redux";
-import { setDataUser, setDummySampah, setListAlamat } from "../redux/reducers";
+import {
+  setDataUser,
+  setDummySampah,
+  setListAlamat,
+  setRedemPoint,
+} from "../redux/reducers";
 import { userRegister } from "../redux/reducerUser";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { strings } from "../utils/strings";
 
 const ChooseUser = ({ navigation }) => {
   const [openUser, setOpenUser] = useState(false);
   const [valueUser, setValueUser] = useState(null);
 
   const dispatch = useDispatch();
-  const selector = useSelector((state) => state.user);
 
   const [user, setUser] = useState([
     { label: "Masyarakat", value: "masyarakat" },
@@ -49,6 +54,11 @@ const ChooseUser = ({ navigation }) => {
     asyncGetData("listAlamat").then((res) => {
       if (typeof res === "object" && res !== null) {
         dispatch(setListAlamat(res));
+      }
+    });
+    asyncGetData(strings.redemPoint).then((res) => {
+      if (typeof res === "object" && res !== null) {
+        dispatch(setRedemPoint(res));
       }
     });
 

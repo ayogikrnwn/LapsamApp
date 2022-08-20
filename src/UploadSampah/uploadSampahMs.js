@@ -182,7 +182,7 @@ const uploadSampahMs = ({ route, navigation }) => {
 
       axios({
         data: formData,
-        baseURL: `http://192.168.158.140:1324/upload-image/${named}`,
+        baseURL: `http://192.168.125.140:1324/upload-image/${named}`,
         method: "POST",
         headers: {
           "Content-Type": "multipart/form-data",

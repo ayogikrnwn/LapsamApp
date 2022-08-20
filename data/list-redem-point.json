@@ -1,0 +1,15 @@
+[
+  {
+    "alamat": "jl. jalan test 3",
+    "created_at": "Sat Aug 20 2022 03:04:00 GMT+0700 (WIB)",
+    "data": { "id_masy": 1078526.5283819227, "point": 8000 },
+    "id_masy": 1078526.5283819227,
+    "nama_masy": "test 3",
+    "nik_masy": "123234345456",
+    "no_hp_masy": "123234345",
+    "password": "test",
+    "point": 8000,
+    "updated_at": "Sat Aug 20 2022 03:04:00 GMT+0700 (WIB)",
+    "username": "test3"
+  }
+]

@@ -131,7 +131,7 @@ const Router = () => {
         )}
       </>
 
-      {isLogin.nama_petugas ? (
+      {isLogin.nama_petugas && isLogin.role !== "petugas-iuran" ? (
         <Stack.Screen
           name="MyTabsPetugas"
           component={MyTabsPetugas}

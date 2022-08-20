@@ -1,4 +1,5 @@
 import {
+  Alert,
   Image,
   ScrollView,
   StyleSheet,
@@ -48,6 +49,8 @@ const LoginPetugas = ({ navigation }) => {
         // navigation.navigate("MyTabsPetugas");
 
         navigation.navigate("Home");
+      } else {
+        Alert.alert("username atau password yang anda masukan salah");
       }
 
       // asyncGetData("role-petugas").then(async (res) => {
@@ -67,6 +70,8 @@ const LoginPetugas = ({ navigation }) => {
       //   await asyncStoreData(asyncDataUser, res.data);
       //   navigation.navigate("MyTabsPetugas");
       // });
+    } else {
+      Alert.alert("mohon masukan username & password terlebih dahulu");
     }
 
     // try {

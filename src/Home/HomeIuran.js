@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   Image,
   ScrollView,
@@ -12,12 +12,87 @@ import ICLengkap from "../assets/right.png";
 import HeaderHomeIuran from "../components/HeaderComponent/HeaderHomeIuran";
 import CardPembayaran from "../components/CardPembayaran";
 import InputTextSearch from "../Input/InputTextSearch";
-import { formatDate } from "../utils";
+import { formatDate, getListIuran } from "../utils";
+import { useSelector } from "react-redux";
+import { useFocusEffect } from "@react-navigation/native";
+
+let firstRunning = true;
 
 const HomeIuran = ({ navigation }) => {
+  const [listDoneRedemPoint, setListDoneRedemPoint] = useState(false);
+  const [listTerimaRedemPoint, setListTerimaRedemPoint] = useState(false);
+  const [listRedemPoint, setListRedemPoint] = useState(false);
+  const [keyword, setKeyword] = useState("");
+
+  const selector = useSelector((state) => state.data);
+  const { user } = useSelector((state) => state.user);
+
+  React.useEffect(() => {
+    console.log("test focus");
+
+    getListIuran({
+      selector,
+      user,
+      setListTerimaRedemPoint,
+      setListRedemPoint,
+      setListDoneRedemPoint,
+    });
+  }, []);
+
+  useFocusEffect(
+    React.useCallback(() => {
+      getListIuran({
+        selector,
+        user,
+        setListTerimaRedemPoint,
+        setListRedemPoint,
+        setListDoneRedemPoint,
+      }).then((res) => {
+        firstRunning = false;
+      });
+
+      return () => {
+        console.log("firstRunning");
+        firstRunning = true;
+        // console.log("leave");
+      };
+    }, [])
+  );
+
+  const newReedemPoint = () => {
+    if (listTerimaRedemPoint && listRedemPoint) {
+      let result = [...listTerimaRedemPoint, ...listRedemPoint].slice(0, 6);
+      if (keyword) {
+        let filter = result.filter((data) => data.nik_masy.includes(keyword));
+        if (filter.length > 0) {
+          return filter;
+        } else {
+          return false;
+        }
+      } else {
+        return result;
+      }
+    } else if (listRedemPoint) {
+      const result = listRedemPoint.slice(0, 6);
+
+      if (keyword) {
+        let filter = result.filter((data) => data.nik_masy.includes(keyword));
+        if (filter.length > 0) {
+          return filter;
+        } else {
+          return false;
+        }
+      } else {
+        return result;
+      }
+    } else {
+      return false;
+    }
+  };
+
   return (
     <View style={{ flex: 1 }}>
-      <HeaderHomeIuran />
+      <HeaderHomeIuran user={selector.dataUser} />
 
       <View style={styles.wrapper}>
         <ScrollView>
@@ -37,7 +112,12 @@ const HomeIuran = ({ navigation }) => {
 
             <View style={{ marginTop: 24 }}>
               <View style={{ flexDirection: "row" }}>
-                <InputTextSearch placeholder="Cari NIK" />
+                <InputTextSearch
+                  onChangeText={(e) => {
+                    setKeyword(e);
+                  }}
+                  placeholder="Cari NIK"
+                />
                 <TouchableOpacity
                   style={{
                     width: 80,
@@ -58,15 +138,58 @@ const HomeIuran = ({ navigation }) => {
                   </Text>
                 </TouchableOpacity>
               </View>
-
-              <CardPembayaran label="Terima" />
-              <CardPembayaran label="Terima" />
-              <CardPembayaran label="Terima" />
-              <CardPembayaran label="Terima" />
-              <CardPembayaran label="Terima" />
+              {newReedemPoint() &&
+                newReedemPoint().map((data) => {
+                  return (
+                    <CardPembayaran
+                      user={data.nama_masy}
+                      alamat={data.alamat}
+                      nik={data.nik_masy}
+                      label={data.data ? "Terima" : "Reedem"}
+                      color={data.data ? "red" : "#FBDF07"}
+                      onClickButton={() => {
+                        navigation.navigate("Pembayaran", {
+                          ...data,
+                          reedemPorccess: data.data ? true : false,
+                        });
+                      }}
+                    />
+                  );
+                })}
+              {listDoneRedemPoint &&
+                listDoneRedemPoint.map((data) => {
+                  return (
+                    <CardPembayaran
+                      user={data.nama_masy}
+                      alamat={data.alamat}
+                      nik={data.nik_masy}
+                      label={"Sudah Dibayar"}
+                      // onClickButton={() => {
+                      //   navigation.navigate("Pembayaran", {
+                      //     ...data,
+                      //     reedemPorccess: data.data ? true : false,
+                      //   });
+                      // }}
+                    />
+                  );
+                })}
+              {/* {listRedemPoint &&
+                listRedemPoint.map((data) => {
+                  return (
+                    <CardPembayaran
+                      user={data.nama_masy}
+                      alamat={data.alamat}
+                      nik={"nik : " + data.nik_masy}
+                      label="Reedem"
+                      onClickButton={() => {
+                        navigation.navigate("Pembayaran", data);
+                      }}
+                    />
+                  );
+                })} */}
             </View>
 
-            <Text
+            {/* <Text
               style={{
                 textAlign: "center",
                 fontWeight: "bold",
@@ -80,11 +203,11 @@ const HomeIuran = ({ navigation }) => {
             <View style={{ marginTop: 24 }}>
               <CardPembayaran label="Sudah Bayar" />
               <CardPembayaran label="Sudah Bayar" />
-            </View>
+            </View> */}
 
             <TouchableOpacity
-              style={{ flexDirection: "row", marginTop: 10 }}
-              onPress={() => navigation.navigate("Add")}
+              style={{ flexDirection: "row", marginVertical: 10 }}
+              onPress={() => navigation.navigate("Detail")}
             >
               <Text>Lebih Lengkap</Text>
               <Image

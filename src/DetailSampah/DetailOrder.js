@@ -124,8 +124,8 @@ const DetailOrder = ({ navigation }) => {
                           alamat={data.alamat_lengkap}
                           imageSampah={
                             typeof data.foto === "string"
-                              ? `http://192.168.158.140:1324/uploads/${data.foto}`
-                              : `http://192.168.158.140:1324/uploads/mypic-1660932210817.jpg`
+                              ? `http://192.168.125.140:1324/uploads/${data.foto}`
+                              : `http://192.168.125.140:1324/uploads/mypic-1660932210817.jpg`
                           }
                           // imageSampah={`file://${data.foto.path}`}
                           title={data.nama_pelapor}
@@ -261,8 +261,8 @@ const DetailOrder = ({ navigation }) => {
                         alamat={data.alamat_lengkap}
                         imageSampah={
                           typeof data.foto === "string"
-                            ? `http://192.168.158.140:1324/uploads/${data.foto}`
-                            : `http://192.168.158.140:1324/uploads/mypic-1660932210817.jpg`
+                            ? `http://192.168.125.140:1324/uploads/${data.foto}`
+                            : `http://192.168.125.140:1324/uploads/mypic-1660932210817.jpg`
                         }
                         // imageSampah={`file://${data.foto.path}`}
                         title={data.nama_pelapor}

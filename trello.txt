@@ -33,3 +33,5 @@ progress
 -ada bug doble klik
 -bug pada informasi data diri, tidak diisi data seharusnya ada notif data blm terisi
 - reedem poin blm selesai
+- scroll dropdown alamat
+

@@ -1,7 +1,14 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import axios from "axios";
 import { APIUrl, APIUrl1, APIUrl3 } from "../config/APIUrl";
-import { setDataUser, setDummySampah, setListSampah } from "../redux/reducers";
+import {
+  setDataUser,
+  setDummySampah,
+  setListSampah,
+  setPayRedeem,
+  setRedemPoint,
+} from "../redux/reducers";
+import { strings } from "./strings";
 export const asyncStoreData = async (key, value) => {
   try {
     const jsonValue = JSON.stringify(value);
@@ -144,7 +151,7 @@ export const getListJadwal = () => {
   });
 };
 
-export const addPoint = ({ dataUser, dispatch }) => {
+export const addPoint = ({ dataUser, dispatch, resetPoint }) => {
   return new Promise(async (resolve, reject) => {
     if (dataUser && dispatch) {
       let newState = await asyncGetData("userRegister");
@@ -154,13 +161,19 @@ export const addPoint = ({ dataUser, dispatch }) => {
       );
 
       console.log("newState", elementIndex, dataUser.id_masy);
-      newState[elementIndex].point += 1000;
+      if (resetPoint) {
+        newState[elementIndex].point = 0;
+        await asyncStoreData(asyncDataUser, newState[elementIndex]);
+        await asyncStoreData("userRegister", newState);
+      } else {
+        newState[elementIndex].point += 1000;
+        dispatch(setDataUser(newState[elementIndex]));
+        await asyncStoreData(asyncDataUser, newState[elementIndex]);
+        await asyncStoreData("userRegister", newState);
+      }
 
       console.log("newState", newState[elementIndex]);
 
-      dispatch(setDataUser(newState[elementIndex]));
-      await asyncStoreData(asyncDataUser, newState[elementIndex]);
-      await asyncStoreData("userRegister", newState);
       resolve(newState[elementIndex]);
     } else {
       reject({
@@ -206,6 +219,104 @@ export const formatDate = (date) => {
   if (day.length < 2) day = "0" + day;
 
   return [day, month, year].join("/");
+};
+
+export const redemPoint = ({ dispatch, selector }) => {
+  return new Promise(async (resolve, reject) => {
+    try {
+      const { redemPoint, dataUser } = selector;
+      const { point, id_masy } = dataUser;
+      let body = [...redemPoint, { id_masy, point }];
+      let store = await asyncStoreData("redemPoint", body);
+      dispatch(setRedemPoint(body));
+      resolve(store);
+    } catch (err) {
+      reject(err);
+    }
+  });
+};
+
+export const getMyProgressRedemPoint = ({ selector }) => {
+  return new Promise((resolve, reject) => {
+    try {
+      const { redemPoint, dataUser } = selector;
+      const { id_masy } = dataUser;
+      let find = redemPoint.find((data) => data.id_masy === id_masy);
+      resolve(find);
+    } catch (err) {
+      reject(reject);
+    }
+  });
+};
+
+export const payRedeem = async ({ dataReedem, dispatch, selector }) => {
+  let idPay = Math.random() * 23432;
+  const data = await asyncGetData(strings.payRedeem);
+  delete dataReedem.data;
+  let newData = {
+    ...dataReedem,
+    idPay,
+    created_at: new Date().toString(),
+    reedemPorccess: 2,
+  };
+  addPoint({ dataUser: dataReedem, dispatch: dispatch, resetPoint: true });
+
+  removeProgressRedemPoint({ dispatch, dataUser: dataReedem, selector }).then(
+    async (res) => {
+      let body = [...data, newData];
+      await asyncStoreData(strings.payRedeem, body);
+      dispatch(setPayRedeem(body));
+    }
+  );
+};
+
+export const removeProgressRedemPoint = ({ selector, dispatch, dataUser }) => {
+  return new Promise(async (resolve, reject) => {
+    try {
+      const { redemPoint } = selector;
+      const { id_masy } = dataUser;
+      let filter = redemPoint.filter((data) => data.id_masy !== id_masy);
+      if (filter) {
+        await asyncStoreData("redemPoint", filter);
+        dispatch(setRedemPoint(filter));
+        resolve(filter);
+      } else {
+        resolve(filter);
+      }
+    } catch (err) {
+      reject(reject);
+    }
+  });
+};
+
+export const getListIuran = async ({
+  selector,
+  user,
+  setListTerimaRedemPoint,
+  setListRedemPoint,
+  setListDoneRedemPoint,
+}) => {
+  let done = await asyncGetData(strings.payRedeem);
+
+  if (setListDoneRedemPoint) {
+    setListDoneRedemPoint(done);
+  }
+  if (selector.redemPoint.length > 0) {
+    let userReedem = [];
+    const newRedemPoint = selector.redemPoint.map((data) => {
+      userReedem.push(data.id_masy);
+      return { ...user.find((fnd) => fnd.id_masy === data.id_masy), data };
+    });
+    let filter = user.filter(
+      (data) => !userReedem.includes(data.id_masy) && data.id_masy
+    );
+    console.log("user", user);
+    console.log(userReedem);
+    await setListTerimaRedemPoint(newRedemPoint);
+    await setListRedemPoint(filter);
+  } else {
+    await setListRedemPoint(user);
+  }
 };
 
 export const asyncDataUser = "data-user";

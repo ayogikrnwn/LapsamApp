@@ -8,31 +8,27 @@ const HeaderComponent = ({ title }) => {
   return (
     <View
       style={{
-        height: 80,
+        height: 70,
         backgroundColor: "white",
         justifyContent: "center",
         borderRadius: 15,
-        // flex: 1,
       }}
     >
       <View style={{ flexDirection: "row" }}>
-        <View
+        <TouchableOpacity
           style={{
             flex: 0.1,
           }}
+          onPress={() => {
+            // console.log("back");
+            navigation.goBack();
+          }}
         >
-          <TouchableOpacity
-            onPress={() => {
-              // console.log("back");
-              navigation.goBack();
-            }}
-          >
-            <Image
-              source={ICLeft}
-              style={{ width: 35, height: 35, marginLeft: 10 }}
-            />
-          </TouchableOpacity>
-        </View>
+          <Image
+            source={ICLeft}
+            style={{ width: 35, height: 35, marginLeft: 10 }}
+          />
+        </TouchableOpacity>
         <View
           style={{
             flex: 1,
