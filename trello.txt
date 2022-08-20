@@ -1,6 +1,6 @@
 ini utk perintah menjalankan servernya
 
-1. service_user : php -S 192.168.158.140:8000 -t public (managemen user : masyarakat, pengelola, petugas sampah, petugas iuran) 
+1. service_user : php -S 192.168.25.140:8000 -t public (managemen user : masyarakat, pengelola, petugas sampah, petugas iuran) 
 2. service2: php -S 192.168.25.140:8001 -t public (managemen sampah : sampah dan detail sampah) 
 3. service3 : php -S 192.168.25.140:8002 -t public ( jadwal sampah, tpa, tps ) 
 4. service4 : php -S 192.168.25.140:8003 -t public (kendaraan)
@@ -24,6 +24,12 @@ progress
 - menyesuaikan status data di beranda - done
 - tanggal di beranda petugas sampah - done
 - validasi form angkut sampah - done
-
-
-- beranda petugas iuran : list masyarakat yang mengajukan reedem point
+- form kecil, sedang, & besar minimal di isi salah satu
+- alamat double - done
+- point error - done
+-Bug pada alamat (sudah tampil alamat, tetapi alamat belum ditambahkan) - done
+-bug pada draf laporkan sampah - done
+-bug pada penambahan alamat, alamat tertambah 2 ketika menambahkan alamat
+-ada bug doble klik
+-bug pada informasi data diri, tidak diisi data seharusnya ada notif data blm terisi
+- reedem poin blm selesai
