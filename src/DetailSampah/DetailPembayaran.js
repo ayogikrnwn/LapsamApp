@@ -44,7 +44,6 @@ const DetailPembayaran = () => {
       return false;
     }
   };
-
   return (
     <View style={{ flex: 1, backgroundColor: "white" }}>
       <View style={{ paddingVertical: 24, paddingHorizontal: 16 }}>

@@ -73,6 +73,7 @@ const Register = ({ navigation }) => {
     // formDataLogin.append("username", registerInput.username);
     // formDataLogin.append("password", registerInput.password);
     const { nama, nik, noponsel, alamat, username, password } = registerInput;
+    const find = user.find((data) => data.username === username);
     const body = {
       // nama_masy: "rohan",
       nama_masy: registerInput.nama,
@@ -94,7 +95,23 @@ const Register = ({ navigation }) => {
 
     // console.log("[...user, body]", [...user, body]);
 
-    if (nama && nik && noponsel && alamat && username && password) {
+    let findUsername = user.find((data) => {
+      return data.username === registerInput.username;
+    });
+    let findNIK = user.find((data) => {
+      return data.nik_masy === registerInput.nik;
+    });
+    let findNumber = user.find((data) => {
+      return data.no_hp_masy === registerInput.noponsel;
+    });
+
+    if (findUsername) {
+      Alert.alert("Username sudah digunakan");
+    } else if (findNIK) {
+      Alert.alert("NIK sudah digunakan");
+    } else if (findNumber) {
+      Alert.alert("Nomor Ponsel sudah digunakan");
+    } else if (nama && nik && noponsel && alamat && username && password) {
       await asyncStoreData(asyncDataUser, body);
       await asyncStoreData("userRegister", [...user, body]);
 

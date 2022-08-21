@@ -8,6 +8,7 @@ import {
   asyncDataUser,
   asyncGetData,
   asyncRemoveData,
+  clearStorage,
   listDummySampah,
 } from "../utils";
 import { useDispatch, useSelector } from "react-redux";
@@ -123,6 +124,12 @@ const ChooseUser = ({ navigation }) => {
       </View>
       <View style={{ alignItems: "center" }}>
         <ButtonPrimary title="Masuk" onPress={handleButton} />
+        <ButtonPrimary
+          title="Clear Storage"
+          onPress={() => {
+            clearStorage();
+          }}
+        />
       </View>
     </View>
   );

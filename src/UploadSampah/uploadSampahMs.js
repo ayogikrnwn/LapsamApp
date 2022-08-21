@@ -19,7 +19,11 @@ import DropDownPicker from "react-native-dropdown-picker";
 
 import { useSelector } from "react-redux";
 
-import { useFocusEffect, useIsFocused } from "@react-navigation/native";
+import {
+  useFocusEffect,
+  useIsFocused,
+  useNavigation,
+} from "@react-navigation/native";
 import NewCameraPage from "./NewCameraPage";
 import { addPoint, asyncDataUser, asyncGetData, inputSampah } from "../utils";
 import { useDispatch } from "react-redux";
@@ -35,7 +39,8 @@ let defaultOpenUser = false,
     besar: 0,
   },
   defaultUser = [{ label: "Tambah Alamat", value: "tambah alamat" }];
-const uploadSampahMs = ({ route, navigation }) => {
+const UploadSampahMs = () => {
+  const navigation = useNavigation();
   const [openUser, setOpenUser] = useState(defaultOpenUser);
   const [valueUser, setValueUser] = useState(defaultValueUser);
   const [size, setSize] = useState(defaultSize);
@@ -431,6 +436,28 @@ const uploadSampahMs = ({ route, navigation }) => {
   );
 };
 
-export default uploadSampahMs;
+const NewComponent = () => {
+  const [state, setState] = useState(false);
+  useFocusEffect(
+    React.useCallback(() => {
+      setTimeout(() => {
+        setState(true);
+      }, 500);
+
+      return () => {
+        setState(false);
+        // console.log("leave");
+      };
+    }, [])
+  );
+
+  if (state) {
+    return <UploadSampahMs />;
+  } else {
+    return <View>{/* <Text>Loading . . . </Text> */}</View>;
+  }
+};
+
+export default NewComponent;
 
 const styles = StyleSheet.create({});

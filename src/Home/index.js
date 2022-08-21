@@ -75,9 +75,9 @@ const Home = ({ navigation }) => {
                 })
             ) : (
               <>
-                <CardStatusSampah img={ICDone} />
+                {/* <CardStatusSampah img={ICDone} />
                 <CardStatusSampah img={ICSwap} />
-                <CardStatusSampah img={ICFail} />
+                <CardStatusSampah img={ICFail} /> */}
               </>
             )}
 

@@ -29,6 +29,8 @@ const UbahProfile = ({ navigation }) => {
   } = dataUser;
 
   const dispatch = useDispatch();
+  const selector2 = useSelector((state) => state.data.dataUser);
+
   const handleRegister = async () => {
     if (
       alamat &&
@@ -42,19 +44,36 @@ const UbahProfile = ({ navigation }) => {
     ) {
       let newState = await asyncGetData("userRegister");
 
-      let elementIndex = newState.findIndex(
-        (obj) => obj.id_masy === dataUser.id_masy
-      );
+      let findUsername = newState.find((data) => {
+        return data.username === dataUser.username;
+      });
+      let findNIK = newState.find((data) => {
+        return data.nik_masy === dataUser.nik_masy;
+      });
+      let findNumber = newState.find((data) => {
+        return data.no_hp_masy === dataUser.no_hp_masy;
+      });
+      if (findUsername && username !== selector2.username) {
+        Alert.alert("Username sudah digunakan");
+      } else if (findNIK && nik_masy !== selector2.nik_masy) {
+        Alert.alert("NIK sudah digunakan");
+      } else if (findNumber && no_hp_masy !== selector2.no_hp_masy) {
+        Alert.alert("Nomor Ponsel sudah digunakan");
+      } else {
+        let elementIndex = newState.findIndex(
+          (obj) => obj.id_masy === dataUser.id_masy
+        );
 
-      newState[elementIndex] = dataUser;
+        newState[elementIndex] = dataUser;
 
-      dispatch(reduxSetDataUser(dataUser));
-      await asyncStoreData(asyncDataUser, dataUser);
-      await asyncStoreData("userRegister", newState);
+        dispatch(reduxSetDataUser(dataUser));
+        await asyncStoreData(asyncDataUser, dataUser);
+        await asyncStoreData("userRegister", newState);
 
-      Alert.alert("Berhasil menyimpan");
+        Alert.alert("Berhasil menyimpan");
 
-      navigation.goBack();
+        navigation.goBack();
+      }
     } else {
       Alert.alert("Semua bidang harus terisi");
     }

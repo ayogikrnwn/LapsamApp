@@ -262,9 +262,14 @@ export const payRedeem = async ({ dataReedem, dispatch, selector }) => {
 
   removeProgressRedemPoint({ dispatch, dataUser: dataReedem, selector }).then(
     async (res) => {
-      let body = [...data, newData];
-      await asyncStoreData(strings.payRedeem, body);
-      dispatch(setPayRedeem(body));
+      let body = data !== null ? [...data, newData] : [newData];
+      asyncStoreData(strings.payRedeem, body)
+        .then((storePayRedeem) => {
+          dispatch(setPayRedeem(body));
+        })
+        .catch((err) => {
+          // console.log("failed");
+        });
     }
   );
 };
@@ -295,7 +300,22 @@ export const getListIuran = async ({
   setListRedemPoint,
   setListDoneRedemPoint,
 }) => {
+  let listDone = [];
   let done = await asyncGetData(strings.payRedeem);
+
+  if (done !== null && typeof done === "object") {
+    const unique = [...new Map(done.map((m) => [m.id_masy, m])).values()];
+    listDone = unique
+      .filter((data) => {
+        if (
+          new Date(data.created_at).getMonth() + 1 ===
+          new Date().getMonth() + 1
+        ) {
+          return data.id_masy;
+        }
+      })
+      .map((data) => data.id_masy);
+  }
 
   if (setListDoneRedemPoint) {
     setListDoneRedemPoint(done);
@@ -309,11 +329,13 @@ export const getListIuran = async ({
     let filter = user.filter(
       (data) => !userReedem.includes(data.id_masy) && data.id_masy
     );
+    let filterUser = filter.filter((data) => !listDone.includes(data.id_masy));
     await setListTerimaRedemPoint(newRedemPoint);
-    await setListRedemPoint(filter);
+    await setListRedemPoint(filterUser);
   } else {
     let filter = user.filter((data) => data.id_masy);
-    await setListRedemPoint(filter);
+    let filterUser = filter.filter((data) => !listDone.includes(data.id_masy));
+    await setListRedemPoint(filterUser);
   }
 };
 
