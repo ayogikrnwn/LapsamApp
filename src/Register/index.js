@@ -38,21 +38,6 @@ const Register = ({ navigation }) => {
   });
   //     console.log(loginInput);
 
-  const dummyDataSuccessRegisterLogin = {
-    id_masy: 5,
-    nama_masy: "Fajar kucing",
-    id_alamat: "jl.rumbai",
-    nik_masy: "1739481209384",
-    no_hp_masy: "081384584848",
-    point: "2",
-    username: "power",
-    password: "$2y$10$ciFcAfg2ZjaN5LDX71iflOFXCEbpMUnTc9vH5qWFAlbl4QebLiN3C",
-    updated_at: "2022-08-05T17:42:16.000000Z",
-    created_at: "2022-08-05T17:31:00.000000Z",
-    token:
-      "ea8e99a8ec3933f0b30d9613b1d6fddd10dd6bb6c8661c7dca07fe47b3005b0c3bd264d3e0928df2",
-  };
-
   const dispatch = useDispatch();
   const selector = useSelector((state) => state.user);
 

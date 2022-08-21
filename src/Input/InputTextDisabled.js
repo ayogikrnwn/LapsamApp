@@ -22,7 +22,7 @@ const InputTextDisabled = ({
         }}
         secureTextEntry={secureText}
         placeholder={placeholder}
-        value={value || "2"}
+        value={value || "0"}
         editable={false}
       />
     </View>

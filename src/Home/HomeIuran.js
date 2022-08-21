@@ -80,24 +80,20 @@ const HomeIuran = () => {
         return false;
       }
     } else if (listRedemPoint) {
+      let newStatus = listDoneRedemPoint.map((data) => {
+        return { ...data, statusReedem: "selesai" };
+      });
+      let result = [...listRedemPoint, ...newStatus].slice(0, 6);
       if (keyword) {
-        let filter = user.filter(
-          (data) =>
-            // data.nik_masy && data.nik_masy.includes(keyword)
-            data.id_masy && data.nik_masy.includes(keyword)
-        );
-        return filter;
+        let filter = result.filter((data) => data.nik_masy.includes(keyword));
+        if (filter.length > 0) {
+          return filter;
+        } else {
+          return false;
+        }
       } else {
         return false;
       }
-      // console.log("listRedemPoint", listRedemPoint);
-      // let result = [...listRedemPoint];
-      // let filter = result.filter((data) => data.nik_masy.includes(keyword));
-      // if (filter.length > 0) {
-      //   return filter;
-      // } else {
-      //   return false;
-      // }
     }
     // else if (listRedemPoint) {
     //   const result = listRedemPoint.slice(0, 6);

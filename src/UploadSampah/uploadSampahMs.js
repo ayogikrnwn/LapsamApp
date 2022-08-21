@@ -198,6 +198,7 @@ const UploadSampahMs = () => {
           addPoint({
             dataUser: count.dataUser,
             dispatch: dispatch,
+            // jumlah: 25000,
           }).then(async (res) => {
             Alert.alert("berhasil melaporkan sampah");
 
