@@ -107,7 +107,7 @@ const DetailPembayaran = () => {
                 />
               );
             })}
-          {listDoneRedemPoint &&
+          {Array.isArray(listDoneRedemPoint) &&
             listDoneRedemPoint.map((data) => {
               return (
                 <CardPembayaranDetail

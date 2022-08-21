@@ -59,9 +59,11 @@ const HomeIuran = () => {
 
   const newReedemPoint = () => {
     if (listTerimaRedemPoint && listRedemPoint) {
-      let newStatus = listDoneRedemPoint.map((data) => {
-        return { ...data, statusReedem: "selesai" };
-      });
+      let newStatus = Array.isArray(listDoneRedemPoint)
+        ? listDoneRedemPoint.map((data) => {
+            return { ...data, statusReedem: "selesai" };
+          })
+        : [];
       let result = [
         ...listTerimaRedemPoint,
         ...listRedemPoint,
@@ -80,9 +82,11 @@ const HomeIuran = () => {
         return false;
       }
     } else if (listRedemPoint) {
-      let newStatus = listDoneRedemPoint.map((data) => {
-        return { ...data, statusReedem: "selesai" };
-      });
+      let newStatus = Array.isArray(listDoneRedemPoint)
+        ? listDoneRedemPoint.map((data) => {
+            return { ...data, statusReedem: "selesai" };
+          })
+        : [];
       let result = [...listRedemPoint, ...newStatus].slice(0, 6);
       if (keyword) {
         let filter = result.filter((data) => data.nik_masy.includes(keyword));
