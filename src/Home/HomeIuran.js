@@ -64,15 +64,11 @@ const HomeIuran = () => {
             return { ...data, statusReedem: "selesai" };
           })
         : [];
-      let result = [
-        ...listTerimaRedemPoint,
-        ...listRedemPoint,
-        ...newStatus,
-      ].slice(0, 6);
+      let result = [...listTerimaRedemPoint, ...newStatus, ...listRedemPoint];
       if (keyword) {
         let filter = result.filter((data) => data.nik_masy.includes(keyword));
         if (filter.length > 0) {
-          return filter;
+          return filter.slice(0, 6);
         } else {
           return false;
         }
@@ -87,11 +83,15 @@ const HomeIuran = () => {
             return { ...data, statusReedem: "selesai" };
           })
         : [];
-      let result = [...listRedemPoint, ...newStatus].slice(0, 6);
+      let result = [...newStatus, ...listRedemPoint];
+      // console.log("listDoneRedemPoint", listDoneRedemPoint);
+      // console.log("newStatus", newStatus);
+      // console.log("result", result);
+
       if (keyword) {
         let filter = result.filter((data) => data.nik_masy.includes(keyword));
         if (filter.length > 0) {
-          return filter;
+          return filter.slice(0, 6);
         } else {
           return false;
         }
