@@ -118,10 +118,10 @@ const DetailPembayaran = () => {
                   label={"Sudah Dibayar"}
                   color={"green"}
                   onPress={() => {
-                    // navigation.navigate("Pembayaran", {
-                    //   ...data,
-                    //   reedemPorccess: data.data ? true : false,
-                    // });
+                    navigation.navigate("Pembayaran", {
+                      ...data,
+                      reedemPorccess: 2,
+                    });
                   }}
                 />
               );
@@ -145,7 +145,6 @@ const NewComponent = () => {
       setState(true);
       return () => {
         setState(false);
-        // console.log("leave");
       };
     }, [])
   );

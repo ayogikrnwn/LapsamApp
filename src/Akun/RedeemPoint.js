@@ -24,13 +24,13 @@ const RedeemPoint = ({ navigation }) => {
   // console.log("selector", selector);
 
   const ajukanTukar = () => {
-    // if (point === 25000) {
-    redemPoint({ dispatch, selector }).then((res) => {
-      setMyProccessRedem(process);
-    });
-    // } else {
-    //   Alert.alert("Point anda tidak cukup");
-    // }
+    if (point === 25000) {
+      redemPoint({ dispatch, selector }).then((res) => {
+        setMyProccessRedem(process);
+      });
+    } else {
+      Alert.alert("Point anda tidak cukup");
+    }
   };
 
   React.useEffect(() => {
@@ -114,6 +114,8 @@ const RedeemPoint = ({ navigation }) => {
                   <Text
                     style={{
                       fontSize: 20,
+                      textAlign: "center",
+                      marginHorizontal: 20,
                     }}
                   >
                     Sedang melakukan proses redem point{" "}
@@ -122,6 +124,8 @@ const RedeemPoint = ({ navigation }) => {
                   <Text
                     style={{
                       fontSize: 20,
+                      textAlign: "center",
+                      marginHorizontal: 20,
                     }}
                   >
                     kamu telah membayar iuran pada bulan ini

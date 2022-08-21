@@ -59,7 +59,14 @@ const HomeIuran = () => {
 
   const newReedemPoint = () => {
     if (listTerimaRedemPoint && listRedemPoint) {
-      let result = [...listTerimaRedemPoint, ...listRedemPoint].slice(0, 6);
+      let newStatus = listDoneRedemPoint.map((data) => {
+        return { ...data, statusReedem: "selesai" };
+      });
+      let result = [
+        ...listTerimaRedemPoint,
+        ...listRedemPoint,
+        ...newStatus,
+      ].slice(0, 6);
       if (keyword) {
         let filter = result.filter((data) => data.nik_masy.includes(keyword));
         if (filter.length > 0) {
@@ -74,9 +81,10 @@ const HomeIuran = () => {
       }
     } else if (listRedemPoint) {
       if (keyword) {
-        let filter = listRedemPoint.filter((data) =>
-          // data.nik_masy && data.nik_masy.includes(keyword)
-          data.nik_masy.includes(keyword)
+        let filter = user.filter(
+          (data) =>
+            // data.nik_masy && data.nik_masy.includes(keyword)
+            data.id_masy && data.nik_masy.includes(keyword)
         );
         return filter;
       } else {
@@ -165,12 +173,29 @@ const HomeIuran = () => {
                       user={data.nama_masy}
                       alamat={data.alamat}
                       nik={data.nik_masy}
-                      label={data.data ? "Terima" : "Reedem"}
-                      color={data.data ? "red" : "#FBDF07"}
+                      label={
+                        data.reedemPorccess === 2
+                          ? "Sudah Dibayar"
+                          : data.data
+                          ? "Terima"
+                          : "Reedem"
+                      }
+                      color={
+                        data.reedemPorccess === 2
+                          ? "green"
+                          : data.data
+                          ? "red"
+                          : "#FBDF07"
+                      }
                       onClickButton={() => {
+                        // console.log(data.reedemPorccess);
                         navigation.navigate("Pembayaran", {
                           ...data,
-                          reedemPorccess: data.data ? true : false,
+                          reedemPorccess: data.reedemPorccess
+                            ? data.reedemPorccess
+                            : data.data
+                            ? true
+                            : false,
                         });
                       }}
                     />
@@ -242,7 +267,7 @@ const NewComponent = () => {
     React.useCallback(() => {
       setTimeout(() => {
         setState(true);
-      }, 500);
+      }, 100);
 
       return () => {
         setState(false);

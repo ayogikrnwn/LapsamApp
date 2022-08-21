@@ -4,10 +4,10 @@ import HeaderComponent from "../components/HeaderComponent/HeaderComponent";
 import InputText from "../Input/InputText";
 import ButtonPrimary from "../components/Button/ButtonPrimary";
 import { useSelector } from "react-redux";
-const UbahProfilePetugas = ({ navigation }) => {
+const UbahProfilePetugas = ({ route, navigation }) => {
   const selector = useSelector((state) => state.data.dataUser);
 
-  const { nama_petugas, no_hp_petugas, alamat } = selector;
+  const { nama_petugas, no_hp_petugas, alamat, role } = selector;
 
   const [registerInput, setRegisterInput] = useState({});
   return (
@@ -38,17 +38,20 @@ const UbahProfilePetugas = ({ navigation }) => {
                 })
               }
             />
-            <InputText
-              disabled={true}
-              value={"-"}
-              title="TPS"
-              onChangeText={(e) =>
-                setRegisterInput({
-                  ...registerInput,
-                  alamat: e,
-                })
-              }
-            />
+            {!role && (
+              <InputText
+                disabled={true}
+                value={"-"}
+                title="TPS"
+                onChangeText={(e) =>
+                  setRegisterInput({
+                    ...registerInput,
+                    alamat: e,
+                  })
+                }
+              />
+            )}
+
             <InputText
               disabled={true}
               value={alamat}
@@ -60,17 +63,19 @@ const UbahProfilePetugas = ({ navigation }) => {
                 })
               }
             />
-            <InputText
-              disabled={true}
-              value={"Mobil 1"}
-              title="Jenis Kendaraan"
-              onChangeText={(e) =>
-                setRegisterInput({
-                  ...registerInput,
-                  alamat: e,
-                })
-              }
-            />
+            {!role && (
+              <InputText
+                disabled={true}
+                value={"Mobil 1"}
+                title="Jenis Kendaraan"
+                onChangeText={(e) =>
+                  setRegisterInput({
+                    ...registerInput,
+                    alamat: e,
+                  })
+                }
+              />
+            )}
 
             {/* <ButtonPrimary title="Simpan" onPress={handleRegister} /> */}
           </View>

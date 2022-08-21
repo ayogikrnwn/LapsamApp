@@ -76,7 +76,13 @@ const Pembayaran = ({ route, navigation }) => {
           user={nama_masy}
           alamat={alamat}
           nik={nik_masy}
-          label={reedemPorccess ? "Sedang Diajukan" : "Belum Diajukan"} // Belum Diajukan
+          label={
+            reedemPorccess === 2
+              ? "Reedem Selesai"
+              : reedemPorccess
+              ? "Sedang Diajukan"
+              : "Belum Diajukan"
+          } // Belum Diajukan
         />
         <Text style={{ color: "white" }}>{no_hp_masy || "08251454354"}</Text>
 
@@ -174,7 +180,11 @@ const Pembayaran = ({ route, navigation }) => {
                   color: "#5FD068",
                 }}
               >
-                {reedemPorccess ? "Terima Reedem Point" : "Reedem Point"}
+                {reedemPorccess === 2
+                  ? "Redeem Telah Dibayar"
+                  : reedemPorccess
+                  ? "Terima Reedem Point"
+                  : "Reedem Point"}
               </Text>
             </TouchableOpacity>
           </View>

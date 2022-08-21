@@ -41,7 +41,8 @@ const LoginPetugas = ({ navigation }) => {
       let findUser = selector.find(
         (data) =>
           data.username === loginInput.username &&
-          loginInput.password === data.password
+          loginInput.password === data.password &&
+          data.role !== "petugas-iuran"
       );
       if (findUser) {
         dispatch(setDataUser(findUser));
@@ -86,7 +87,6 @@ const LoginPetugas = ({ navigation }) => {
     //     navigation.navigate('MyTabsPetugas')
     //   })
     // } catch (error) {
-    //     console.log('gagal', error.response.data);
     //     alert('Login Gagal')
     // }
   };
