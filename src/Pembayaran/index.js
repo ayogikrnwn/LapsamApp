@@ -164,6 +164,7 @@ const Pembayaran = ({ route, navigation }) => {
               </Text>
             </View> */}
             <TouchableOpacity
+              disabled={reedemPorccess === 2}
               onPress={handleBayar}
               style={{
                 height: 50,
@@ -181,7 +182,7 @@ const Pembayaran = ({ route, navigation }) => {
                 }}
               >
                 {reedemPorccess === 2
-                  ? "Redeem Telah Dibayar"
+                  ? "Iuran Telah Dibayar"
                   : reedemPorccess
                   ? "Terima Reedem Point"
                   : "Reedem Point"}
