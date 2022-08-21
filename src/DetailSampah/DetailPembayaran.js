@@ -11,8 +11,10 @@ import ICLeft from "../assets/left.png";
 import CardPembayaranDetail from "../components/CardDetailSampah/CardPembayaranDetail";
 import { useSelector } from "react-redux";
 import { getListIuran } from "../utils";
+import { useFocusEffect, useNavigation } from "@react-navigation/native";
 
-const DetailPembayaran = ({ navigation }) => {
+const DetailPembayaran = () => {
+  const navigation = useNavigation();
   const [namaHeader, setNamaHeader] = useState("Kiri");
   const [listDoneRedemPoint, setListDoneRedemPoint] = useState(false);
   const [listTerimaRedemPoint, setListTerimaRedemPoint] = useState(false);
@@ -137,6 +139,29 @@ const DetailPembayaran = ({ navigation }) => {
   );
 };
 
-export default DetailPembayaran;
+const NewComponent = () => {
+  const [state, setState] = useState(false);
+  useFocusEffect(
+    React.useCallback(() => {
+      setState(true);
+      return () => {
+        setState(false);
+        // console.log("leave");
+      };
+    }, [])
+  );
+
+  if (state) {
+    return <DetailPembayaran />;
+  } else {
+    return (
+      <View>
+        <Text>Loading . . . </Text>
+      </View>
+    );
+  }
+};
+
+export default NewComponent;
 
 const styles = StyleSheet.create({});

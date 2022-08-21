@@ -15,6 +15,7 @@ import {
   setDataUser,
   setDummySampah,
   setListAlamat,
+  setPayRedeem,
   setRedemPoint,
 } from "../redux/reducers";
 import { userRegister } from "../redux/reducerUser";
@@ -59,6 +60,12 @@ const ChooseUser = ({ navigation }) => {
     asyncGetData(strings.redemPoint).then((res) => {
       if (typeof res === "object" && res !== null) {
         dispatch(setRedemPoint(res));
+      }
+    });
+
+    asyncGetData(strings.payRedeem).then((res) => {
+      if (typeof res === "object" && res !== null) {
+        dispatch(setPayRedeem(res));
       }
     });
 

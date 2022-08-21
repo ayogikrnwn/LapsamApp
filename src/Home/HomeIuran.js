@@ -14,11 +14,12 @@ import CardPembayaran from "../components/CardPembayaran";
 import InputTextSearch from "../Input/InputTextSearch";
 import { formatDate, getListIuran } from "../utils";
 import { useSelector } from "react-redux";
-import { useFocusEffect } from "@react-navigation/native";
+import { useFocusEffect, useNavigation } from "@react-navigation/native";
 
 let firstRunning = true;
 
-const HomeIuran = ({ navigation }) => {
+const HomeIuran = () => {
+  const navigation = useNavigation();
   const [listDoneRedemPoint, setListDoneRedemPoint] = useState(false);
   const [listTerimaRedemPoint, setListTerimaRedemPoint] = useState(false);
   const [listRedemPoint, setListRedemPoint] = useState(false);
@@ -28,8 +29,6 @@ const HomeIuran = ({ navigation }) => {
   const { user } = useSelector((state) => state.user);
 
   React.useEffect(() => {
-    console.log("test focus");
-
     getListIuran({
       selector,
       user,
@@ -52,7 +51,6 @@ const HomeIuran = ({ navigation }) => {
       });
 
       return () => {
-        console.log("firstRunning");
         firstRunning = true;
         // console.log("leave");
       };
@@ -69,23 +67,45 @@ const HomeIuran = ({ navigation }) => {
         } else {
           return false;
         }
+      } else if (listTerimaRedemPoint) {
+        return listTerimaRedemPoint;
       } else {
-        return result;
+        return false;
       }
     } else if (listRedemPoint) {
-      const result = listRedemPoint.slice(0, 6);
-
       if (keyword) {
-        let filter = result.filter((data) => data.nik_masy.includes(keyword));
-        if (filter.length > 0) {
-          return filter;
-        } else {
-          return false;
-        }
+        let filter = listRedemPoint.filter((data) =>
+          // data.nik_masy && data.nik_masy.includes(keyword)
+          data.nik_masy.includes(keyword)
+        );
+        return filter;
       } else {
-        return result;
+        return false;
       }
-    } else {
+      // console.log("listRedemPoint", listRedemPoint);
+      // let result = [...listRedemPoint];
+      // let filter = result.filter((data) => data.nik_masy.includes(keyword));
+      // if (filter.length > 0) {
+      //   return filter;
+      // } else {
+      //   return false;
+      // }
+    }
+    // else if (listRedemPoint) {
+    //   const result = listRedemPoint.slice(0, 6);
+
+    //   if (keyword) {
+    //     let filter = result.filter((data) => data.nik_masy.includes(keyword));
+    //     if (filter.length > 0) {
+    //       return filter;
+    //     } else {
+    //       return false;
+    //     }
+    //   } else {
+    //     return result;
+    //   }
+    // }
+    else {
       return false;
     }
   };
@@ -156,7 +176,7 @@ const HomeIuran = ({ navigation }) => {
                     />
                   );
                 })}
-              {listDoneRedemPoint &&
+              {/* {listDoneRedemPoint &&
                 listDoneRedemPoint.map((data) => {
                   return (
                     <CardPembayaran
@@ -164,15 +184,9 @@ const HomeIuran = ({ navigation }) => {
                       alamat={data.alamat}
                       nik={data.nik_masy}
                       label={"Sudah Dibayar"}
-                      // onClickButton={() => {
-                      //   navigation.navigate("Pembayaran", {
-                      //     ...data,
-                      //     reedemPorccess: data.data ? true : false,
-                      //   });
-                      // }}
                     />
                   );
-                })}
+                })} */}
               {/* {listRedemPoint &&
                 listRedemPoint.map((data) => {
                   return (
@@ -222,7 +236,29 @@ const HomeIuran = ({ navigation }) => {
   );
 };
 
-export default HomeIuran;
+const NewComponent = () => {
+  const [state, setState] = useState(false);
+  useFocusEffect(
+    React.useCallback(() => {
+      setTimeout(() => {
+        setState(true);
+      }, 500);
+
+      return () => {
+        setState(false);
+        // console.log("leave");
+      };
+    }, [])
+  );
+
+  if (state) {
+    return <HomeIuran />;
+  } else {
+    return <View>{/* <Text>Loading . . . </Text> */}</View>;
+  }
+};
+
+export default NewComponent;
 
 const styles = StyleSheet.create({
   wrapper: {

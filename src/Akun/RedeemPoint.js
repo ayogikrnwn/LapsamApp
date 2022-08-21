@@ -9,6 +9,8 @@ import {
   redemPoint,
   removeProgressRedemPoint,
 } from "../utils";
+const process = "process",
+  done = "done";
 
 const RedeemPoint = ({ navigation }) => {
   // const selector  = useSelector(state => state.data)
@@ -22,28 +24,49 @@ const RedeemPoint = ({ navigation }) => {
   // console.log("selector", selector);
 
   const ajukanTukar = () => {
-    if (point === 25000) {
-      setMyProccessRedem(true);
-      redemPoint({ dispatch, selector }).then((res) => {
-        getMyProgressRedemPoint({ selector }).then((res) => {
-          if (res) {
-            setMyProccessRedem(res);
-          }
-        });
-      });
-    } else {
-      Alert.alert("Point anda tidak cukup");
-    }
+    // if (point === 25000) {
+    redemPoint({ dispatch, selector }).then((res) => {
+      setMyProccessRedem(process);
+    });
+    // } else {
+    //   Alert.alert("Point anda tidak cukup");
+    // }
   };
 
   React.useEffect(() => {
-    getMyProgressRedemPoint({ selector }).then((res) => {
-      if (res) {
-        setMyProccessRedem(res);
+    if (selector.payRedeem.length > 0) {
+      let filter = selector.payRedeem;
+
+      let find = filter.find(
+        (data) =>
+          data.id_masy === dataUser.id_masy &&
+          new Date(data.created_at).getMonth() + 1 === new Date().getMonth() + 1
+      );
+
+      if (find) {
+        setMyProccessRedem(done);
       } else {
-        setMyProccessRedem(false);
+        getMyProgressRedemPoint({ selector }).then((res) => {
+          if (res) {
+            setMyProccessRedem(process);
+          } else {
+            setMyProccessRedem(false);
+          }
+        });
       }
-    });
+
+      // console.log("selector", filter);
+      // console.log(dateCreated.getMonth());
+      // new Date().getMonth()+1
+    } else if (selector.redemPoint.length > 0) {
+      getMyProgressRedemPoint({ selector }).then((res) => {
+        if (res) {
+          setMyProccessRedem(process);
+        } else {
+          setMyProccessRedem(false);
+        }
+      });
+    }
   }, []);
 
   return (
@@ -77,12 +100,46 @@ const RedeemPoint = ({ navigation }) => {
               Dengan mengklik tukar poin berarti anda mengajukan penukaran poin
               25 ribu poin untuk pembayaran iuran sampah 1bulan{" "}
             </Text>
-            {myProccessRedem && (
-              <Text>
-                Sedang melakukan proses redem point sebesar{" "}
-                {myProccessRedem.point}
-              </Text>
+
+            {myProccessRedem ? (
+              <>
+                <View
+                  style={{
+                    borderWidth: 0.5,
+                    width: "90%",
+                    marginVertical: 5,
+                  }}
+                />
+                {myProccessRedem === process ? (
+                  <Text
+                    style={{
+                      fontSize: 20,
+                    }}
+                  >
+                    Sedang melakukan proses redem point{" "}
+                  </Text>
+                ) : (
+                  <Text
+                    style={{
+                      fontSize: 20,
+                    }}
+                  >
+                    kamu telah membayar iuran pada bulan ini
+                  </Text>
+                )}
+              </>
+            ) : (
+              <></>
             )}
+
+            {/* <ButtonPrimary
+              onPress={() => {
+                removeProgressRedemPoint({ selector, dispatch, dataUser });
+              }}
+              title="Ajukan Tukarkan Poin"
+            /> */}
+
+            {/* kamu telah membayar iuran pada bulan ini */}
           </View>
         </ScrollView>
       </View>

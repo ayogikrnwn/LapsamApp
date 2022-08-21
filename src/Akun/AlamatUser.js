@@ -17,7 +17,6 @@ const AlamatUser = ({ navigation }) => {
     } else {
       return false;
     }
-    // console.log(filter);
   };
 
   return (

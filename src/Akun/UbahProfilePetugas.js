@@ -6,14 +6,6 @@ import ButtonPrimary from "../components/Button/ButtonPrimary";
 import { useSelector } from "react-redux";
 const UbahProfilePetugas = ({ navigation }) => {
   const selector = useSelector((state) => state.data.dataUser);
-  const handleRegister = () => {
-    alert("Ubah Data Berhasil");
-    navigation.navigate("Home");
-  };
-
-  React.useEffect(() => {
-    console.log("selector", selector);
-  }, []);
 
   const { nama_petugas, no_hp_petugas, alamat } = selector;
 

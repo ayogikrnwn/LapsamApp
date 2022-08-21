@@ -151,7 +151,7 @@ export const getListJadwal = () => {
   });
 };
 
-export const addPoint = ({ dataUser, dispatch, resetPoint }) => {
+export const addPoint = ({ dataUser, dispatch, resetPoint, jumlah }) => {
   return new Promise(async (resolve, reject) => {
     if (dataUser && dispatch) {
       let newState = await asyncGetData("userRegister");
@@ -160,19 +160,20 @@ export const addPoint = ({ dataUser, dispatch, resetPoint }) => {
         (obj) => obj.id_masy === dataUser.id_masy
       );
 
-      console.log("newState", elementIndex, dataUser.id_masy);
       if (resetPoint) {
         newState[elementIndex].point = 0;
         await asyncStoreData(asyncDataUser, newState[elementIndex]);
         await asyncStoreData("userRegister", newState);
       } else {
-        newState[elementIndex].point += 1000;
+        if (jumlah) {
+          newState[elementIndex].point = jumlah;
+        } else {
+          newState[elementIndex].point += 1000;
+        }
         dispatch(setDataUser(newState[elementIndex]));
         await asyncStoreData(asyncDataUser, newState[elementIndex]);
         await asyncStoreData("userRegister", newState);
       }
-
-      console.log("newState", newState[elementIndex]);
 
       resolve(newState[elementIndex]);
     } else {
@@ -193,8 +194,6 @@ export const removeSampah = ({ dataSampah, dispatch }) => {
       let elementRemoved = newState.filter((data) => {
         return data.id_sampah !== dataSampah.id_sampah;
       });
-
-      console.log("elementRemoved", elementRemoved, dataSampah.id_sampah);
 
       dispatch(setDummySampah(elementRemoved));
       let removeDummy = await asyncStoreData(listDummySampah, elementRemoved);
@@ -310,12 +309,11 @@ export const getListIuran = async ({
     let filter = user.filter(
       (data) => !userReedem.includes(data.id_masy) && data.id_masy
     );
-    console.log("user", user);
-    console.log(userReedem);
     await setListTerimaRedemPoint(newRedemPoint);
     await setListRedemPoint(filter);
   } else {
-    await setListRedemPoint(user);
+    let filter = user.filter((data) => data.id_masy);
+    await setListRedemPoint(filter);
   }
 };
 
@@ -331,11 +329,9 @@ export const clearStorage = async () => {
         })
         .then((res) => {
           resolve(res);
-          console.log("success clear storage");
         })
         .catch((err) => {
           reject(err);
-          console.log("failed clear storage");
         });
 
       // let clear = await AsyncStorage.clear();
