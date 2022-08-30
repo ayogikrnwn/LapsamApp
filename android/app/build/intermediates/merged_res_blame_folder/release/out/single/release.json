@@ -1,0 +1,242 @@
+[
+    {
+        "merged": "/mnt/Windows/Users/pc-030/Documents/PROJECT YOGI/LapsamApp-master/android/app/build/intermediates/merged_res/release/drawable-mdpi_src_assets_right.png.flat",
+        "source": "/mnt/Windows/Users/pc-030/Documents/PROJECT YOGI/LapsamApp-master/android/app/build/generated/res/react/release/drawable-mdpi/src_assets_right.png"
+    },
+    {
+        "merged": "/mnt/Windows/Users/pc-030/Documents/PROJECT YOGI/LapsamApp-master/android/app/build/intermediates/merged_res/release/drawable-mdpi_node_modules_reactnativedropdownpicker_src_themes_dark_icons_close.png.flat",
+        "source": "/mnt/Windows/Users/pc-030/Documents/PROJECT YOGI/LapsamApp-master/android/app/build/generated/res/react/release/drawable-mdpi/node_modules_reactnativedropdownpicker_src_themes_dark_icons_close.png"
+    },
+    {
+        "merged": "/mnt/Windows/Users/pc-030/Documents/PROJECT YOGI/LapsamApp-master/android/app/build/intermediates/merged_res/release/drawable-mdpi_src_assets_dumfoto.png.flat",
+        "source": "/mnt/Windows/Users/pc-030/Documents/PROJECT YOGI/LapsamApp-master/android/app/build/generated/res/react/release/drawable-mdpi/src_assets_dumfoto.png"
+    },
+    {
+        "merged": "/mnt/Windows/Users/pc-030/Documents/PROJECT YOGI/LapsamApp-master/android/app/build/intermediates/merged_res/release/drawable-mdpi_node_modules_reactnativedropdownpicker_src_themes_light_icons_arrowup.png.flat",
+        "source": "/mnt/Windows/Users/pc-030/Documents/PROJECT YOGI/LapsamApp-master/android/app/build/generated/res/react/release/drawable-mdpi/node_modules_reactnativedropdownpicker_src_themes_light_icons_arrowup.png"
+    },
+    {
+        "merged": "/mnt/Windows/Users/pc-030/Documents/PROJECT YOGI/LapsamApp-master/android/app/build/intermediates/merged_res/release/drawable-xxhdpi_node_modules_reactnavigation_bottomtabs_node_modules_reactnavigation_elements_src_assets_backicon.png.flat",
+        "source": "/mnt/Windows/Users/pc-030/Documents/PROJECT YOGI/LapsamApp-master/android/app/build/generated/res/react/release/drawable-xxhdpi/node_modules_reactnavigation_bottomtabs_node_modules_reactnavigation_elements_src_assets_backicon.png"
+    },
+    {
+        "merged": "/mnt/Windows/Users/pc-030/Documents/PROJECT YOGI/LapsamApp-master/android/app/build/intermediates/merged_res/release/drawable-mdpi_src_assets_shieldgrey.png.flat",
+        "source": "/mnt/Windows/Users/pc-030/Documents/PROJECT YOGI/LapsamApp-master/android/app/build/generated/res/react/release/drawable-mdpi/src_assets_shieldgrey.png"
+    },
+    {
+        "merged": "/mnt/Windows/Users/pc-030/Documents/PROJECT YOGI/LapsamApp-master/android/app/build/intermediates/merged_res/release/drawable-mdpi_src_assets_dummyphoto.png.flat",
+        "source": "/mnt/Windows/Users/pc-030/Documents/PROJECT YOGI/LapsamApp-master/android/app/build/generated/res/react/release/drawable-mdpi/src_assets_dummyphoto.png"
+    },
+    {
+        "merged": "/mnt/Windows/Users/pc-030/Documents/PROJECT YOGI/LapsamApp-master/android/app/build/intermediates/merged_res/release/drawable-mdpi_src_assets_swap.png.flat",
+        "source": "/mnt/Windows/Users/pc-030/Documents/PROJECT YOGI/LapsamApp-master/android/app/build/generated/res/react/release/drawable-mdpi/src_assets_swap.png"
+    },
+    {
+        "merged": "/mnt/Windows/Users/pc-030/Documents/PROJECT YOGI/LapsamApp-master/android/app/build/intermediates/merged_res/release/drawable-mdpi_src_assets_done.png.flat",
+        "source": "/mnt/Windows/Users/pc-030/Documents/PROJECT YOGI/LapsamApp-master/android/app/build/generated/res/react/release/drawable-mdpi/src_assets_done.png"
+    },
+    {
+        "merged": "/mnt/Windows/Users/pc-030/Documents/PROJECT YOGI/LapsamApp-master/android/app/build/intermediates/merged_res/release/mipmap-xhdpi_ic_launcher.png.flat",
+        "source": "/mnt/Windows/Users/pc-030/Documents/PROJECT YOGI/LapsamApp-master/android/app/src/main/res/mipmap-xhdpi/ic_launcher.png"
+    },
+    {
+        "merged": "/mnt/Windows/Users/pc-030/Documents/PROJECT YOGI/LapsamApp-master/android/app/build/intermediates/merged_res/release/drawable-mdpi_src_assets_pickfoto.png.flat",
+        "source": "/mnt/Windows/Users/pc-030/Documents/PROJECT YOGI/LapsamApp-master/android/app/build/generated/res/react/release/drawable-mdpi/src_assets_pickfoto.png"
+    },
+    {
+        "merged": "/mnt/Windows/Users/pc-030/Documents/PROJECT YOGI/LapsamApp-master/android/app/build/intermediates/merged_res/release/drawable-mdpi_src_assets_plus.png.flat",
+        "source": "/mnt/Windows/Users/pc-030/Documents/PROJECT YOGI/LapsamApp-master/android/app/build/generated/res/react/release/drawable-mdpi/src_assets_plus.png"
+    },
+    {
+        "merged": "/mnt/Windows/Users/pc-030/Documents/PROJECT YOGI/LapsamApp-master/android/app/build/intermediates/merged_res/release/drawable-mdpi_src_assets_ftsmph.png.flat",
+        "source": "/mnt/Windows/Users/pc-030/Documents/PROJECT YOGI/LapsamApp-master/android/app/build/generated/res/react/release/drawable-mdpi/src_assets_ftsmph.png"
+    },
+    {
+        "merged": "/mnt/Windows/Users/pc-030/Documents/PROJECT YOGI/LapsamApp-master/android/app/build/intermediates/merged_res/release/mipmap-mdpi_ic_launcher_round.png.flat",
+        "source": "/mnt/Windows/Users/pc-030/Documents/PROJECT YOGI/LapsamApp-master/android/app/src/main/res/mipmap-mdpi/ic_launcher_round.png"
+    },
+    {
+        "merged": "/mnt/Windows/Users/pc-030/Documents/PROJECT YOGI/LapsamApp-master/android/app/build/intermediates/merged_res/release/drawable-xhdpi_node_modules_reactnavigation_elements_src_assets_backicon.png.flat",
+        "source": "/mnt/Windows/Users/pc-030/Documents/PROJECT YOGI/LapsamApp-master/android/app/build/generated/res/react/release/drawable-xhdpi/node_modules_reactnavigation_elements_src_assets_backicon.png"
+    },
+    {
+        "merged": "/mnt/Windows/Users/pc-030/Documents/PROJECT YOGI/LapsamApp-master/android/app/build/intermediates/merged_res/release/mipmap-xhdpi_ic_launcher_round.png.flat",
+        "source": "/mnt/Windows/Users/pc-030/Documents/PROJECT YOGI/LapsamApp-master/android/app/src/main/res/mipmap-xhdpi/ic_launcher_round.png"
+    },
+    {
+        "merged": "/mnt/Windows/Users/pc-030/Documents/PROJECT YOGI/LapsamApp-master/android/app/build/intermediates/merged_res/release/drawable-xxxhdpi_node_modules_reactnavigation_bottomtabs_node_modules_reactnavigation_elements_src_assets_backicon.png.flat",
+        "source": "/mnt/Windows/Users/pc-030/Documents/PROJECT YOGI/LapsamApp-master/android/app/build/generated/res/react/release/drawable-xxxhdpi/node_modules_reactnavigation_bottomtabs_node_modules_reactnavigation_elements_src_assets_backicon.png"
+    },
+    {
+        "merged": "/mnt/Windows/Users/pc-030/Documents/PROJECT YOGI/LapsamApp-master/android/app/build/intermediates/merged_res/release/drawable-mdpi_node_modules_reactnativedropdownpicker_src_themes_light_icons_tick.png.flat",
+        "source": "/mnt/Windows/Users/pc-030/Documents/PROJECT YOGI/LapsamApp-master/android/app/build/generated/res/react/release/drawable-mdpi/node_modules_reactnativedropdownpicker_src_themes_light_icons_tick.png"
+    },
+    {
+        "merged": "/mnt/Windows/Users/pc-030/Documents/PROJECT YOGI/LapsamApp-master/android/app/build/intermediates/merged_res/release/drawable-mdpi_src_assets_bgmountain.png.flat",
+        "source": "/mnt/Windows/Users/pc-030/Documents/PROJECT YOGI/LapsamApp-master/android/app/build/generated/res/react/release/drawable-mdpi/src_assets_bgmountain.png"
+    },
+    {
+        "merged": "/mnt/Windows/Users/pc-030/Documents/PROJECT YOGI/LapsamApp-master/android/app/build/intermediates/merged_res/release/mipmap-xxxhdpi_ic_launcher.png.flat",
+        "source": "/mnt/Windows/Users/pc-030/Documents/PROJECT YOGI/LapsamApp-master/android/app/src/main/res/mipmap-xxxhdpi/ic_launcher.png"
+    },
+    {
+        "merged": "/mnt/Windows/Users/pc-030/Documents/PROJECT YOGI/LapsamApp-master/android/app/build/intermediates/merged_res/release/drawable-mdpi_node_modules_reactnativedropdownpicker_src_themes_dark_icons_arrowup.png.flat",
+        "source": "/mnt/Windows/Users/pc-030/Documents/PROJECT YOGI/LapsamApp-master/android/app/build/generated/res/react/release/drawable-mdpi/node_modules_reactnativedropdownpicker_src_themes_dark_icons_arrowup.png"
+    },
+    {
+        "merged": "/mnt/Windows/Users/pc-030/Documents/PROJECT YOGI/LapsamApp-master/android/app/build/intermediates/merged_res/release/drawable-mdpi_src_assets_logolapsam.png.flat",
+        "source": "/mnt/Windows/Users/pc-030/Documents/PROJECT YOGI/LapsamApp-master/android/app/build/generated/res/react/release/drawable-mdpi/src_assets_logolapsam.png"
+    },
+    {
+        "merged": "/mnt/Windows/Users/pc-030/Documents/PROJECT YOGI/LapsamApp-master/android/app/build/intermediates/merged_res/release/drawable-mdpi_src_assets_editpf.png.flat",
+        "source": "/mnt/Windows/Users/pc-030/Documents/PROJECT YOGI/LapsamApp-master/android/app/build/generated/res/react/release/drawable-mdpi/src_assets_editpf.png"
+    },
+    {
+        "merged": "/mnt/Windows/Users/pc-030/Documents/PROJECT YOGI/LapsamApp-master/android/app/build/intermediates/merged_res/release/drawable-xxxhdpi_node_modules_reactnavigation_elements_src_assets_backicon.png.flat",
+        "source": "/mnt/Windows/Users/pc-030/Documents/PROJECT YOGI/LapsamApp-master/android/app/build/generated/res/react/release/drawable-xxxhdpi/node_modules_reactnavigation_elements_src_assets_backicon.png"
+    },
+    {
+        "merged": "/mnt/Windows/Users/pc-030/Documents/PROJECT YOGI/LapsamApp-master/android/app/build/intermediates/merged_res/release/drawable-mdpi_src_assets_fail.png.flat",
+        "source": "/mnt/Windows/Users/pc-030/Documents/PROJECT YOGI/LapsamApp-master/android/app/build/generated/res/react/release/drawable-mdpi/src_assets_fail.png"
+    },
+    {
+        "merged": "/mnt/Windows/Users/pc-030/Documents/PROJECT YOGI/LapsamApp-master/android/app/build/intermediates/merged_res/release/drawable-mdpi_src_assets_unikom.png.flat",
+        "source": "/mnt/Windows/Users/pc-030/Documents/PROJECT YOGI/LapsamApp-master/android/app/build/generated/res/react/release/drawable-mdpi/src_assets_unikom.png"
+    },
+    {
+        "merged": "/mnt/Windows/Users/pc-030/Documents/PROJECT YOGI/LapsamApp-master/android/app/build/intermediates/merged_res/release/drawable-mdpi_src_assets_email.png.flat",
+        "source": "/mnt/Windows/Users/pc-030/Documents/PROJECT YOGI/LapsamApp-master/android/app/build/generated/res/react/release/drawable-mdpi/src_assets_email.png"
+    },
+    {
+        "merged": "/mnt/Windows/Users/pc-030/Documents/PROJECT YOGI/LapsamApp-master/android/app/build/intermediates/merged_res/release/drawable-mdpi_src_assets_left.png.flat",
+        "source": "/mnt/Windows/Users/pc-030/Documents/PROJECT YOGI/LapsamApp-master/android/app/build/generated/res/react/release/drawable-mdpi/src_assets_left.png"
+    },
+    {
+        "merged": "/mnt/Windows/Users/pc-030/Documents/PROJECT YOGI/LapsamApp-master/android/app/build/intermediates/merged_res/release/mipmap-xxhdpi_ic_launcher_round.png.flat",
+        "source": "/mnt/Windows/Users/pc-030/Documents/PROJECT YOGI/LapsamApp-master/android/app/src/main/res/mipmap-xxhdpi/ic_launcher_round.png"
+    },
+    {
+        "merged": "/mnt/Windows/Users/pc-030/Documents/PROJECT YOGI/LapsamApp-master/android/app/build/intermediates/merged_res/release/drawable-mdpi_src_assets_home.png.flat",
+        "source": "/mnt/Windows/Users/pc-030/Documents/PROJECT YOGI/LapsamApp-master/android/app/build/generated/res/react/release/drawable-mdpi/src_assets_home.png"
+    },
+    {
+        "merged": "/mnt/Windows/Users/pc-030/Documents/PROJECT YOGI/LapsamApp-master/android/app/build/intermediates/merged_res/release/drawable-mdpi_src_assets_swapgrey.png.flat",
+        "source": "/mnt/Windows/Users/pc-030/Documents/PROJECT YOGI/LapsamApp-master/android/app/build/generated/res/react/release/drawable-mdpi/src_assets_swapgrey.png"
+    },
+    {
+        "merged": "/mnt/Windows/Users/pc-030/Documents/PROJECT YOGI/LapsamApp-master/android/app/build/intermediates/merged_res/release/drawable-mdpi_src_assets_backasset.png.flat",
+        "source": "/mnt/Windows/Users/pc-030/Documents/PROJECT YOGI/LapsamApp-master/android/app/build/generated/res/react/release/drawable-mdpi/src_assets_backasset.png"
+    },
+    {
+        "merged": "/mnt/Windows/Users/pc-030/Documents/PROJECT YOGI/LapsamApp-master/android/app/build/intermediates/merged_res/release/mipmap-xxxhdpi_ic_launcher_round.png.flat",
+        "source": "/mnt/Windows/Users/pc-030/Documents/PROJECT YOGI/LapsamApp-master/android/app/src/main/res/mipmap-xxxhdpi/ic_launcher_round.png"
+    },
+    {
+        "merged": "/mnt/Windows/Users/pc-030/Documents/PROJECT YOGI/LapsamApp-master/android/app/build/intermediates/merged_res/release/drawable-mdpi_node_modules_reactnativedropdownpicker_src_themes_dark_icons_tick.png.flat",
+        "source": "/mnt/Windows/Users/pc-030/Documents/PROJECT YOGI/LapsamApp-master/android/app/build/generated/res/react/release/drawable-mdpi/node_modules_reactnativedropdownpicker_src_themes_dark_icons_tick.png"
+    },
+    {
+        "merged": "/mnt/Windows/Users/pc-030/Documents/PROJECT YOGI/LapsamApp-master/android/app/build/intermediates/merged_res/release/drawable-mdpi_src_assets_iconsampah.png.flat",
+        "source": "/mnt/Windows/Users/pc-030/Documents/PROJECT YOGI/LapsamApp-master/android/app/build/generated/res/react/release/drawable-mdpi/src_assets_iconsampah.png"
+    },
+    {
+        "merged": "/mnt/Windows/Users/pc-030/Documents/PROJECT YOGI/LapsamApp-master/android/app/build/intermediates/merged_res/release/drawable-mdpi_node_modules_reactnavigation_elements_src_assets_backicon.png.flat",
+        "source": "/mnt/Windows/Users/pc-030/Documents/PROJECT YOGI/LapsamApp-master/android/app/build/generated/res/react/release/drawable-mdpi/node_modules_reactnavigation_elements_src_assets_backicon.png"
+    },
+    {
+        "merged": "/mnt/Windows/Users/pc-030/Documents/PROJECT YOGI/LapsamApp-master/android/app/build/intermediates/merged_res/release/drawable-mdpi_src_assets_masukansampah.png.flat",
+        "source": "/mnt/Windows/Users/pc-030/Documents/PROJECT YOGI/LapsamApp-master/android/app/build/generated/res/react/release/drawable-mdpi/src_assets_masukansampah.png"
+    },
+    {
+        "merged": "/mnt/Windows/Users/pc-030/Documents/PROJECT YOGI/LapsamApp-master/android/app/build/intermediates/merged_res/release/mipmap-xxhdpi_ic_launcher.png.flat",
+        "source": "/mnt/Windows/Users/pc-030/Documents/PROJECT YOGI/LapsamApp-master/android/app/src/main/res/mipmap-xxhdpi/ic_launcher.png"
+    },
+    {
+        "merged": "/mnt/Windows/Users/pc-030/Documents/PROJECT YOGI/LapsamApp-master/android/app/build/intermediates/merged_res/release/drawable-xhdpi_node_modules_reactnavigation_bottomtabs_node_modules_reactnavigation_elements_src_assets_backicon.png.flat",
+        "source": "/mnt/Windows/Users/pc-030/Documents/PROJECT YOGI/LapsamApp-master/android/app/build/generated/res/react/release/drawable-xhdpi/node_modules_reactnavigation_bottomtabs_node_modules_reactnavigation_elements_src_assets_backicon.png"
+    },
+    {
+        "merged": "/mnt/Windows/Users/pc-030/Documents/PROJECT YOGI/LapsamApp-master/android/app/build/intermediates/merged_res/release/drawable-mdpi_node_modules_reactnavigation_elements_src_assets_backiconmask.png.flat",
+        "source": "/mnt/Windows/Users/pc-030/Documents/PROJECT YOGI/LapsamApp-master/android/app/build/generated/res/react/release/drawable-mdpi/node_modules_reactnavigation_elements_src_assets_backiconmask.png"
+    },
+    {
+        "merged": "/mnt/Windows/Users/pc-030/Documents/PROJECT YOGI/LapsamApp-master/android/app/build/intermediates/merged_res/release/drawable-mdpi_src_assets_failgrey.png.flat",
+        "source": "/mnt/Windows/Users/pc-030/Documents/PROJECT YOGI/LapsamApp-master/android/app/build/generated/res/react/release/drawable-mdpi/src_assets_failgrey.png"
+    },
+    {
+        "merged": "/mnt/Windows/Users/pc-030/Documents/PROJECT YOGI/LapsamApp-master/android/app/build/intermediates/merged_res/release/mipmap-hdpi_ic_launcher.png.flat",
+        "source": "/mnt/Windows/Users/pc-030/Documents/PROJECT YOGI/LapsamApp-master/android/app/src/main/res/mipmap-hdpi/ic_launcher.png"
+    },
+    {
+        "merged": "/mnt/Windows/Users/pc-030/Documents/PROJECT YOGI/LapsamApp-master/android/app/build/intermediates/merged_res/release/drawable-mdpi_node_modules_reactnavigation_bottomtabs_node_modules_reactnavigation_elements_src_assets_backicon.png.flat",
+        "source": "/mnt/Windows/Users/pc-030/Documents/PROJECT YOGI/LapsamApp-master/android/app/build/generated/res/react/release/drawable-mdpi/node_modules_reactnavigation_bottomtabs_node_modules_reactnavigation_elements_src_assets_backicon.png"
+    },
+    {
+        "merged": "/mnt/Windows/Users/pc-030/Documents/PROJECT YOGI/LapsamApp-master/android/app/build/intermediates/merged_res/release/mipmap-hdpi_ic_launcher_round.png.flat",
+        "source": "/mnt/Windows/Users/pc-030/Documents/PROJECT YOGI/LapsamApp-master/android/app/src/main/res/mipmap-hdpi/ic_launcher_round.png"
+    },
+    {
+        "merged": "/mnt/Windows/Users/pc-030/Documents/PROJECT YOGI/LapsamApp-master/android/app/build/intermediates/merged_res/release/drawable-mdpi_src_assets_setting.png.flat",
+        "source": "/mnt/Windows/Users/pc-030/Documents/PROJECT YOGI/LapsamApp-master/android/app/build/generated/res/react/release/drawable-mdpi/src_assets_setting.png"
+    },
+    {
+        "merged": "/mnt/Windows/Users/pc-030/Documents/PROJECT YOGI/LapsamApp-master/android/app/build/intermediates/merged_res/release/drawable-mdpi_node_modules_reactnativedropdownpicker_src_themes_dark_icons_arrowdown.png.flat",
+        "source": "/mnt/Windows/Users/pc-030/Documents/PROJECT YOGI/LapsamApp-master/android/app/build/generated/res/react/release/drawable-mdpi/node_modules_reactnativedropdownpicker_src_themes_dark_icons_arrowdown.png"
+    },
+    {
+        "merged": "/mnt/Windows/Users/pc-030/Documents/PROJECT YOGI/LapsamApp-master/android/app/build/intermediates/merged_res/release/drawable_rn_edit_text_material.xml.flat",
+        "source": "/mnt/Windows/Users/pc-030/Documents/PROJECT YOGI/LapsamApp-master/android/app/src/main/res/drawable/rn_edit_text_material.xml"
+    },
+    {
+        "merged": "/mnt/Windows/Users/pc-030/Documents/PROJECT YOGI/LapsamApp-master/android/app/build/intermediates/merged_res/release/drawable-mdpi_node_modules_reactnativedropdownpicker_src_themes_light_icons_arrowdown.png.flat",
+        "source": "/mnt/Windows/Users/pc-030/Documents/PROJECT YOGI/LapsamApp-master/android/app/build/generated/res/react/release/drawable-mdpi/node_modules_reactnativedropdownpicker_src_themes_light_icons_arrowdown.png"
+    },
+    {
+        "merged": "/mnt/Windows/Users/pc-030/Documents/PROJECT YOGI/LapsamApp-master/android/app/build/intermediates/merged_res/release/drawable-mdpi_node_modules_reactnativedropdownpicker_src_themes_light_icons_close.png.flat",
+        "source": "/mnt/Windows/Users/pc-030/Documents/PROJECT YOGI/LapsamApp-master/android/app/build/generated/res/react/release/drawable-mdpi/node_modules_reactnativedropdownpicker_src_themes_light_icons_close.png"
+    },
+    {
+        "merged": "/mnt/Windows/Users/pc-030/Documents/PROJECT YOGI/LapsamApp-master/android/app/build/intermediates/merged_res/release/drawable-mdpi_src_assets_phonecall.png.flat",
+        "source": "/mnt/Windows/Users/pc-030/Documents/PROJECT YOGI/LapsamApp-master/android/app/build/generated/res/react/release/drawable-mdpi/src_assets_phonecall.png"
+    },
+    {
+        "merged": "/mnt/Windows/Users/pc-030/Documents/PROJECT YOGI/LapsamApp-master/android/app/build/intermediates/merged_res/release/drawable-mdpi_src_assets_paper.png.flat",
+        "source": "/mnt/Windows/Users/pc-030/Documents/PROJECT YOGI/LapsamApp-master/android/app/build/generated/res/react/release/drawable-mdpi/src_assets_paper.png"
+    },
+    {
+        "merged": "/mnt/Windows/Users/pc-030/Documents/PROJECT YOGI/LapsamApp-master/android/app/build/intermediates/merged_res/release/drawable-hdpi_node_modules_reactnavigation_bottomtabs_node_modules_reactnavigation_elements_src_assets_backicon.png.flat",
+        "source": "/mnt/Windows/Users/pc-030/Documents/PROJECT YOGI/LapsamApp-master/android/app/build/generated/res/react/release/drawable-hdpi/node_modules_reactnavigation_bottomtabs_node_modules_reactnavigation_elements_src_assets_backicon.png"
+    },
+    {
+        "merged": "/mnt/Windows/Users/pc-030/Documents/PROJECT YOGI/LapsamApp-master/android/app/build/intermediates/merged_res/release/drawable-mdpi_src_assets_call.png.flat",
+        "source": "/mnt/Windows/Users/pc-030/Documents/PROJECT YOGI/LapsamApp-master/android/app/build/generated/res/react/release/drawable-mdpi/src_assets_call.png"
+    },
+    {
+        "merged": "/mnt/Windows/Users/pc-030/Documents/PROJECT YOGI/LapsamApp-master/android/app/build/intermediates/merged_res/release/drawable-xxhdpi_node_modules_reactnavigation_elements_src_assets_backicon.png.flat",
+        "source": "/mnt/Windows/Users/pc-030/Documents/PROJECT YOGI/LapsamApp-master/android/app/build/generated/res/react/release/drawable-xxhdpi/node_modules_reactnavigation_elements_src_assets_backicon.png"
+    },
+    {
+        "merged": "/mnt/Windows/Users/pc-030/Documents/PROJECT YOGI/LapsamApp-master/android/app/build/intermediates/merged_res/release/mipmap-mdpi_ic_launcher.png.flat",
+        "source": "/mnt/Windows/Users/pc-030/Documents/PROJECT YOGI/LapsamApp-master/android/app/src/main/res/mipmap-mdpi/ic_launcher.png"
+    },
+    {
+        "merged": "/mnt/Windows/Users/pc-030/Documents/PROJECT YOGI/LapsamApp-master/android/app/build/intermediates/merged_res/release/drawable-mdpi_node_modules_reactnavigation_bottomtabs_node_modules_reactnavigation_elements_src_assets_backiconmask.png.flat",
+        "source": "/mnt/Windows/Users/pc-030/Documents/PROJECT YOGI/LapsamApp-master/android/app/build/generated/res/react/release/drawable-mdpi/node_modules_reactnavigation_bottomtabs_node_modules_reactnavigation_elements_src_assets_backiconmask.png"
+    },
+    {
+        "merged": "/mnt/Windows/Users/pc-030/Documents/PROJECT YOGI/LapsamApp-master/android/app/build/intermediates/merged_res/release/drawable-mdpi_src_assets_edit.png.flat",
+        "source": "/mnt/Windows/Users/pc-030/Documents/PROJECT YOGI/LapsamApp-master/android/app/build/generated/res/react/release/drawable-mdpi/src_assets_edit.png"
+    },
+    {
+        "merged": "/mnt/Windows/Users/pc-030/Documents/PROJECT YOGI/LapsamApp-master/android/app/build/intermediates/merged_res/release/drawable-mdpi_src_assets_ilnews.png.flat",
+        "source": "/mnt/Windows/Users/pc-030/Documents/PROJECT YOGI/LapsamApp-master/android/app/build/generated/res/react/release/drawable-mdpi/src_assets_ilnews.png"
+    },
+    {
+        "merged": "/mnt/Windows/Users/pc-030/Documents/PROJECT YOGI/LapsamApp-master/android/app/build/intermediates/merged_res/release/drawable-mdpi_src_assets_paperef.png.flat",
+        "source": "/mnt/Windows/Users/pc-030/Documents/PROJECT YOGI/LapsamApp-master/android/app/build/generated/res/react/release/drawable-mdpi/src_assets_paperef.png"
+    },
+    {
+        "merged": "/mnt/Windows/Users/pc-030/Documents/PROJECT YOGI/LapsamApp-master/android/app/build/intermediates/merged_res/release/drawable-hdpi_node_modules_reactnavigation_elements_src_assets_backicon.png.flat",
+        "source": "/mnt/Windows/Users/pc-030/Documents/PROJECT YOGI/LapsamApp-master/android/app/build/generated/res/react/release/drawable-hdpi/node_modules_reactnavigation_elements_src_assets_backicon.png"
+    }
+]

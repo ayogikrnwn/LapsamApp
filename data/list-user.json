@@ -1,0 +1,42 @@
+[
+  {
+    "alamat": "jl.rumbai",
+    "created_at": "2022-08-05T17:00:42.000000Z",
+    "id_petugas": 5,
+    "jabatan": "Manager",
+    "nama_petugas": "nanana",
+    "nik_petugas": "1739481209384",
+    "no_hp_petugas": "081384584848",
+    "password": "ranger",
+    "penempatan": "Rumbai Pesisir",
+    "token": "21a48538a2f70a7449924b5debdf1b238328d63b926811409be3fe53765a165f83941b0610c1beed",
+    "updated_at": "2022-08-18T18:56:35.000000Z",
+    "username": "powered"
+  },
+  {
+    "alamat": "jl. jalannnnn",
+    "created_at": "Fri Aug 19 2022 19:49:12 GMT+0700 (WIB)",
+    "id_masy": 1177504.0491662258,
+    "nama_masy": "rohan 3",
+    "nik_masy": "123234345456",
+    "no_hp_masy": "123234345",
+    "password": "rohan",
+    "point": 4000,
+    "updated_at": "Fri Aug 19 2022 19:49:12 GMT+0700 (WIB)",
+    "username": "rohan3"
+  },
+  {
+    "id_petugas_iuran": 3,
+    "nama_petugas": "Fajar",
+    "nik_petugas": "1739481209384",
+    "no_hp_petugas": "081384584848",
+    "jabatan": "Manager",
+    "alamat": "jl.rumbai",
+    "penempatan": "Rumbai Pesisir",
+    "username": "power",
+    "password": "ranger",
+    "updated_at": "2022-08-06T02:43:55.000000Z",
+    "created_at": "2022-08-06T02:36:46.000000Z",
+    "token": "a80e2b6182e76d325ec8c979c1b11b8f9e572dc774787a424ed812557db7939a96e6c8a3edfe1572"
+  }
+]

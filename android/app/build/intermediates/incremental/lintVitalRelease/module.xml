@@ -1,0 +1,19 @@
+<lint-module
+    format="1"
+    dir="/mnt/Windows/Users/pc-030/Documents/PROJECT YOGI/LapsamApp-master/android/app"
+    name=":app"
+    type="APP"
+    maven="ZulfiApp:app:"
+    gradle="7.0.4"
+    buildFolder="build"
+    bootClassPath="/home/mfc/Android/Sdk/platforms/android-31/android.jar:/home/mfc/Android/Sdk/build-tools/30.0.2/core-lambda-stubs.jar"
+    javaSourceLevel="1.8"
+    compileTarget="android-31"
+    neverShrinking="true">
+  <lintOptions
+      abortOnError="true"
+      absolutePaths="true"
+      checkReleaseBuilds="true"
+      explainIssues="true"/>
+  <variant name="release"/>
+</lint-module>
